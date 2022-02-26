@@ -2,6 +2,47 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 12px;
   width: 100vw;
   height: 100vh;
+
+  &__globe {
+    width: calc(var(--globe-radius) * 2);
+  }
+
+  &__right {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 300px;
+    height: 100%;
+
+    &__quiz {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      padding: 20px;
+      border: 1px solid #eee;
+    }
+    &__info {
+      flex: 1;
+      padding: 20px;
+      border: 1px solid #eee;
+
+      ul {
+        margin-top: 20px;
+
+        li.guess {
+          opacity: 0.2;
+          list-style-type: none;
+          line-height: 1.4;
+
+          &--guessed {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
 }
