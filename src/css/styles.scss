@@ -53,6 +53,10 @@ $theme-colors: (
   padding: 0;
 }
 
+#root {
+  width: 100%;
+}
+
 body {
   position: relative;
   display: flex;

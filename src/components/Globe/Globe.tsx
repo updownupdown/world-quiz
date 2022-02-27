@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect } from "react";
+import { memo, useState, useEffect } from "react";
 import {
   ComposableMap,
   Geographies,
@@ -6,11 +6,18 @@ import {
   Sphere,
 } from "react-simple-maps";
 import clsx from "clsx";
-import { globeRadius, zoom } from "./constants";
+import { countryList } from "../../data/countryData";
 import "./Globe.scss";
-import { countryList } from "./countryData";
 
-const geoUrl = "./data/world-110m.json";
+const geoUrl = process.env.PUBLIC_URL + "/data/world-110m.json";
+
+const globeRadius = 300;
+
+const zoom = {
+  min: globeRadius / 2.1,
+  max: globeRadius,
+  default: globeRadius / 2.1,
+};
 
 interface GeoProps {
   geometry: any;
@@ -80,7 +87,7 @@ const Globe = ({
       rotateToCountry(focusOnCountry);
       setFocusOnCountry("");
     }
-  }, [focusOnCountry]);
+  }, [focusOnCountry, setFocusOnCountry]);
 
   return (
     <>

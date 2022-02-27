@@ -1,0 +1,21 @@
+.list {
+  overflow-y: auto;
+  grid-area: list;
+
+  flex: 1;
+  padding: 20px;
+
+  ul {
+    margin-top: 20px;
+
+    li.guess {
+      opacity: 0.2;
+      list-style-type: none;
+      line-height: 1.4;
+
+      &--guessed {
+        opacity: 1;
+      }
+    }
+  }
+}

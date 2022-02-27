@@ -1,4 +1,3 @@
-import React from "react";
 import { normalizeString } from "../utils/utils";
 
 export const countryList = [
@@ -2376,7 +2375,7 @@ export const countryList = [
 
 const tempNormalizedList: string[] = [];
 
-countryList.map((country) => {
+countryList.forEach((country) => {
   tempNormalizedList.push(normalizeString(country.name));
 });
 

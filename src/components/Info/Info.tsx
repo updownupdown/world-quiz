@@ -1,7 +1,7 @@
-import React from "react";
 import Flag from "react-world-flags";
+import { countryList } from "../../data/countryData";
+import { formatPopulationNumber } from "../../utils/utils";
 import "./Info.scss";
-import { countryList } from "../globe/countryData";
 
 interface Props {
   selectedCountry: string;
@@ -19,12 +19,12 @@ export const Info = ({ selectedCountry }: Props) => {
       <Flag code={countryData.code} />
       <h3>{countryData.name}</h3>
       <ul>
-        <li>Code: {countryData.code}</li>
         <li>Capital: {countryData.capital}</li>
-        <li>Continent: {countryData.continent}</li>
-        <li>Region: {countryData.region}</li>
-        <li>Subregion: {countryData.subregion}</li>
-        <li>Population: {countryData.population}</li>
+        <li>
+          {countryData.subregion}, {countryData.region}
+        </li>
+        <li>Population: {formatPopulationNumber(countryData.population)}</li>
+        <li>Country Code: {countryData.code}</li>
       </ul>
     </div>
   );
