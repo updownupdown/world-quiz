@@ -3,7 +3,12 @@ import "./Header.scss";
 export const Header = () => {
   return (
     <header className="header">
-      <h1>World Quiz</h1>
+      <div className="header__center">
+        <h1>World Quiz</h1>
+        <a href="https://github.com/updownupdown/world-quiz" target="_blank">
+          About
+        </a>
+      </div>
     </header>
   );
 };

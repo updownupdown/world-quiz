@@ -1,52 +1,22 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import Globe from "./components/Globe/Globe";
-import clsx from "clsx";
 import { Info } from "./components/Info/Info";
-import { useMemo } from "react";
-import { normalizeString } from "./utils/utils";
-import {
-  normalizedCountryNames,
-  countryNum,
-  countryList,
-} from "./data/countryData";
+
 import { Header } from "./components/Header/Header";
 import { List } from "./components/List/List";
+import { Quiz } from "./components/Quiz/Quiz";
 
 function App() {
-  const [value, setValue] = useState("");
   const [guessedCountries, setGuessedCountries] = useState<string[]>([]);
   const [focusOnCountry, setFocusOnCountry] = useState("");
   const [selectedCountry, setSelectedCountry] = useState("");
-  const [inputMessage, setInputMessage] = useState("");
-
-  useEffect(() => {
-    const userGuess = normalizeString(value);
-
-    const guessIndex = normalizedCountryNames.indexOf(userGuess);
-
-    if (guessIndex !== -1) {
-      const matchingCountryCode = countryList[guessIndex].code;
-      const matchingCountryName = countryList[guessIndex].name;
-
-      if (
-        matchingCountryCode &&
-        !guessedCountries.includes(matchingCountryCode)
-      ) {
-        setGuessedCountries([...guessedCountries, matchingCountryCode]);
-        setFocusOnCountry(matchingCountryCode);
-        setSelectedCountry(matchingCountryCode);
-        setValue("");
-        setInputMessage("You guessed " + matchingCountryName + "!");
-      }
-    }
-  }, [value, guessedCountries]);
 
   return (
     <div className="page">
       <Header />
 
-      <div className="display">
-        <div className="display__globe">
+      <div className="page__content">
+        <div className="display">
           <Globe
             guessedCountries={guessedCountries}
             setGuessedCountries={setGuessedCountries}
@@ -57,36 +27,19 @@ function App() {
             allowSelection={false}
             allowHover={false}
           />
+
+          <Info selectedCountry={selectedCountry} />
         </div>
 
-        <Info selectedCountry={selectedCountry} />
-      </div>
-
-      <div className="quiz">
-        <p>
-          Countries found: {guessedCountries.length} of {countryNum}
-        </p>
-
-        <input
-          type="text"
-          value={value}
-          onChange={(e) => {
-            setValue(e.target.value);
-          }}
+        <Quiz
+          guessedCountries={guessedCountries}
+          setGuessedCountries={setGuessedCountries}
+          setFocusOnCountry={setFocusOnCountry}
+          setSelectedCountry={setSelectedCountry}
         />
 
-        <p>{inputMessage}</p>
-
-        <button
-          onClick={() => {
-            setGuessedCountries([]);
-          }}
-        >
-          Reset Guesses
-        </button>
+        <List guessedCountries={guessedCountries} />
       </div>
-
-      <List guessedCountries={guessedCountries} />
     </div>
   );
 }

@@ -8,7 +8,13 @@ interface Props {
 }
 
 export const Info = ({ selectedCountry }: Props) => {
-  if (!selectedCountry) return <p>No country selected</p>;
+  const instructions = (
+    <div className="instructions">
+      <h3>Instructions</h3>
+      <p>Find all the world's countries!</p>
+      <p>Start by typing your guess in the input below.</p>
+    </div>
+  );
 
   const countryData = countryList.filter(
     (country) => country.code === selectedCountry
@@ -16,16 +22,24 @@ export const Info = ({ selectedCountry }: Props) => {
 
   return (
     <div className="info">
-      <Flag code={countryData.code} />
-      <h3>{countryData.name}</h3>
-      <ul>
-        <li>Capital: {countryData.capital}</li>
-        <li>
-          {countryData.subregion}, {countryData.region}
-        </li>
-        <li>Population: {formatPopulationNumber(countryData.population)}</li>
-        <li>Country Code: {countryData.code}</li>
-      </ul>
+      {selectedCountry ? (
+        <>
+          <Flag code={countryData.code} />
+          <h3>{countryData.name}</h3>
+          <ul>
+            <li>Capital: {countryData.capital}</li>
+            <li>
+              {countryData.subregion}, {countryData.region}
+            </li>
+            <li>
+              Population: {formatPopulationNumber(countryData.population)}
+            </li>
+            <li>Country Code: {countryData.code}</li>
+          </ul>
+        </>
+      ) : (
+        instructions
+      )}
     </div>
   );
 };

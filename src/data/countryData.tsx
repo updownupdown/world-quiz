@@ -114,9 +114,9 @@ export const countryList = [
   {
     code: "AQ",
     name: "Antarctica",
-    continent: "Antarctica",
-    region: "Antarctica",
-    subregion: "Antarctica",
+    continent: "Other",
+    region: "Other",
+    subregion: "Other",
     latLon: [-90, 0],
     capital: null,
     population: 4050,
@@ -124,9 +124,9 @@ export const countryList = [
   {
     code: "TF",
     name: "French Southern and Antarctic Lands",
-    continent: "Seven seas (open ocean)",
-    region: "Seven seas (open ocean)",
-    subregion: "Seven seas (open ocean)",
+    continent: "Other",
+    region: "Other",
+    subregion: "Other",
     latLon: [-49.25, 69.167],
     capital: "Port-aux-Français",
     population: 140,
@@ -974,9 +974,9 @@ export const countryList = [
   {
     code: "IO",
     name: "British Indian Ocean Territory",
-    continent: "Seven seas (open ocean)",
-    region: "Seven seas (open ocean)",
-    subregion: "Seven seas (open ocean)",
+    continent: "Other",
+    region: "Other",
+    subregion: "Other",
     latLon: [-6, 71.5],
     capital: "Diego Garcia",
     population: 4000,
@@ -1344,7 +1344,7 @@ export const countryList = [
   {
     code: "MV",
     name: "Maldives",
-    continent: "Seven seas (open ocean)",
+    continent: "Other",
     region: "Asia",
     subregion: "Southern Asia",
     latLon: [3.25, 73],
@@ -1474,7 +1474,7 @@ export const countryList = [
   {
     code: "MU",
     name: "Mauritius",
-    continent: "Seven seas (open ocean)",
+    continent: "Other",
     region: "Africa",
     subregion: "Eastern Africa",
     latLon: [-20.28333333, 57.55],
@@ -1874,9 +1874,9 @@ export const countryList = [
   {
     code: "GS",
     name: "South Georgia and the Islands",
-    continent: "Seven seas (open ocean)",
-    region: "Seven seas (open ocean)",
-    subregion: "Seven seas (open ocean)",
+    continent: "Other",
+    region: "Other",
+    subregion: "Other",
     latLon: [-54.5, -37],
     capital: "King Edward Point",
     population: 30,
@@ -2024,7 +2024,7 @@ export const countryList = [
   {
     code: "SC",
     name: "Seychelles",
-    continent: "Seven seas (open ocean)",
+    continent: "Other",
     region: "Africa",
     subregion: "Eastern Africa",
     latLon: [-4.58333333, 55.66666666],
@@ -2205,8 +2205,8 @@ export const countryList = [
     code: "UM",
     name: "United States Minor Outlying Islands",
     continent: "North America",
-    region: "Seven seas (open ocean)",
-    subregion: "Seven seas (open ocean)",
+    region: "Other",
+    subregion: "Other",
     latLon: [19.2911437, 166.618332],
     capital: null,
     population: 300,
@@ -2373,12 +2373,19 @@ export const countryList = [
   },
 ];
 
-const tempNormalizedList: string[] = [];
+// Number of countries
+export const countryNum = countryList.length;
 
+// Generate simplified country name list for user input matching
+const tempNormalizedList: string[] = [];
 countryList.forEach((country) => {
   tempNormalizedList.push(normalizeString(country.name));
 });
-
 export const normalizedCountryNames = tempNormalizedList;
 
-export const countryNum = countryList.length;
+// Generate list of regions for list categories
+const regions: string[] = [];
+countryList.forEach((country) => {
+  regions.push(country.region);
+});
+export const regionList = [...new Set(regions)];

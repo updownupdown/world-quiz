@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { countryList } from "../../data/countryData";
+import { countryList, regionList } from "../../data/countryData";
 import clsx from "clsx";
 import "./List.scss";
 
@@ -9,20 +9,28 @@ interface Props {
 
 export const List = ({ guessedCountries }: Props) => {
   const guessedCountryList = useMemo(() => {
-    const list = countryList.map((country) => {
-      const isGuessed = guessedCountries.includes(country.code);
-
+    return regionList.map((region) => {
       return (
-        <li
-          key={country.code}
-          className={clsx("guess", isGuessed && "guess--guessed")}
-        >
-          {country.name}
-        </li>
+        <div className="region" key={region}>
+          <h3>{region}</h3>
+          <ul>
+            {countryList.map((country) => {
+              if (country.region !== region) return;
+              const isGuessed = guessedCountries.includes(country.code);
+
+              return (
+                <li
+                  key={country.code}
+                  className={clsx(isGuessed ? "guessed" : "not-guessed")}
+                >
+                  {country.name}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       );
     });
-
-    return <ul>{list}</ul>;
   }, [guessedCountries]);
 
   return <div className="list">{guessedCountryList}</div>;
