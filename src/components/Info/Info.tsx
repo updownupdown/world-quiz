@@ -27,14 +27,13 @@ export const Info = ({ selectedCountry }: Props) => {
           <Flag code={countryData.code} />
           <h3>{countryData.name}</h3>
           <ul>
-            <li>Capital: {countryData.capital}</li>
+            <li className="capital">{countryData.capital}</li>
             <li>
-              {countryData.subregion}, {countryData.region}
+              {countryData.subregion}, {countryData.region} ({countryData.code})
             </li>
             <li>
               Population: {formatPopulationNumber(countryData.population)}
             </li>
-            <li>Country Code: {countryData.code}</li>
           </ul>
         </>
       ) : (

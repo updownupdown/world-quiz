@@ -1,8 +1,19 @@
 .globe {
+  cursor: grab;
   overflow: hidden;
   position: relative;
   width: calc(var(--globe-radius) * 2);
   height: calc(var(--globe-radius) * 2);
+
+  &--dragging {
+    cursor: grabbing;
+  }
+
+  &--hoverable:not(.globe--dragging) {
+    .path-country:hover {
+      fill: var(--globe-earth-hover);
+    }
+  }
 
   .path-country {
     transition: 0.1s ease fill;
@@ -16,38 +27,42 @@
     }
   }
 
-  &--hoverable:not(.globe--dragging) {
-    .path-country:hover {
-      fill: var(--globe-earth-hover);
-    }
-  }
-}
-
-.sphere-glow {
-  pointer-events: none;
-  transition: 0.1s ease box-shadow;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-
-  border-radius: 50%;
-  box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.08), 4px 8px 20px rgba(0, 0, 0, 0.08);
-
-  mix-blend-mode: hard-light;
-  transform: translate(-50%, -50%);
-
-  // .globe--dragging & {
-  //   box-shadow: 1px 2px 14px rgba(0, 0, 0, 0.2), 4px 8px 32px rgba(0, 0, 0, 0.2);
-  // }
-
-  &:before {
-    content: "";
+  .zoom-buttons {
     position: absolute;
-    top: 0;
-    right: 0;
     bottom: 0;
-    left: 0;
+    right: 0;
+    display: flex;
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .sphere-glow {
+    pointer-events: none;
+    transition: 0.1s ease box-shadow;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
     border-radius: 50%;
-    background: radial-gradient(#bbb, #555);
+    box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.08),
+      4px 8px 20px rgba(0, 0, 0, 0.08);
+
+    mix-blend-mode: hard-light;
+    transform: translate(-50%, -50%);
+
+    // .globe--dragging & {
+    //   box-shadow: 1px 2px 14px rgba(0, 0, 0, 0.2), 4px 8px 32px rgba(0, 0, 0, 0.2);
+    // }
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      border-radius: 50%;
+      background: radial-gradient(#bbb, #555);
+    }
   }
 }

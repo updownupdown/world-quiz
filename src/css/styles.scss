@@ -43,7 +43,7 @@ $theme-colors: (
 
   --font: "Red Hat Display", sans-serif;
 
-  --input-height: 38px;
+  --input-height: 42px;
 
   --globe-radius: 300px;
 
@@ -83,6 +83,68 @@ select {
 button {
   transition: 0.2s ease all;
   cursor: pointer;
+}
+
+button {
+  transition: 0.2s ease all;
+  cursor: pointer;
+
+  &.button--simple {
+    outline: none;
+    border: unset;
+    background: unset;
+
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--K500);
+
+    &:hover {
+      color: var(--accent);
+    }
+  }
+
+  &.button--text,
+  &.button--icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0 14px;
+    height: var(--input-height);
+
+    border-radius: 4px;
+    border: unset;
+    background: var(--white);
+    box-shadow: 1px 2px 8px rgba(var(--K800-rgb), 0.1);
+
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--K800);
+
+    &:focus {
+      outline: none;
+    }
+
+    &:hover {
+      background: var(--K50);
+      box-shadow: 2px 4px 12px rgba(var(--K800-rgb), 0.2);
+    }
+  }
+
+  &.button--icon {
+    width: var(--input-height);
+    padding: 0;
+
+    svg {
+      display: block;
+      width: 32px;
+      height: 32px;
+
+      path {
+        fill: var(--K800);
+      }
+    }
+  }
 }
 
 h1,

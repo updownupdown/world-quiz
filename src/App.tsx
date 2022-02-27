@@ -16,27 +16,31 @@ function App() {
       <Header />
 
       <div className="page__content">
-        <div className="display">
-          <Globe
-            guessedCountries={guessedCountries}
-            setGuessedCountries={setGuessedCountries}
-            focusOnCountry={focusOnCountry}
-            setFocusOnCountry={setFocusOnCountry}
-            selectedCountry={selectedCountry}
-            setSelectedCountry={setSelectedCountry}
-            allowSelection={false}
-            allowHover={false}
-          />
+        <div className="top">
+          <div className="top__display">
+            <Info selectedCountry={selectedCountry} />
 
-          <Info selectedCountry={selectedCountry} />
+            <Quiz
+              guessedCountries={guessedCountries}
+              setGuessedCountries={setGuessedCountries}
+              setFocusOnCountry={setFocusOnCountry}
+              setSelectedCountry={setSelectedCountry}
+            />
+          </div>
+
+          <div className="top__globe">
+            <Globe
+              guessedCountries={guessedCountries}
+              setGuessedCountries={setGuessedCountries}
+              focusOnCountry={focusOnCountry}
+              setFocusOnCountry={setFocusOnCountry}
+              selectedCountry={selectedCountry}
+              setSelectedCountry={setSelectedCountry}
+              allowSelection={false}
+              allowHover={false}
+            />
+          </div>
         </div>
-
-        <Quiz
-          guessedCountries={guessedCountries}
-          setGuessedCountries={setGuessedCountries}
-          setFocusOnCountry={setFocusOnCountry}
-          setSelectedCountry={setSelectedCountry}
-        />
 
         <List guessedCountries={guessedCountries} />
       </div>

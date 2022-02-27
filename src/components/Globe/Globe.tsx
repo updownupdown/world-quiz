@@ -8,15 +8,17 @@ import {
 import clsx from "clsx";
 import { countryList } from "../../data/countryData";
 import "./Globe.scss";
+import { ZoomOut } from "../Icons/ZoomOut";
+import { ZoomIn } from "../Icons/ZoomIn";
 
 const geoUrl = process.env.PUBLIC_URL + "/data/world-110m.json";
 
 const globeRadius = 300;
 
 const zoom = {
-  min: globeRadius / 2.1,
+  min: globeRadius / 2.2,
   max: globeRadius,
-  default: globeRadius / 2.1,
+  default: globeRadius / 2.2,
 };
 
 interface GeoProps {
@@ -82,6 +84,16 @@ const Globe = ({
     setGuessedCountries([country]);
   }
 
+  function zoomGlobe(zoomIn: boolean) {
+    const zoomFactor = 50;
+    let newScale = zoomIn ? scale + zoomFactor : scale - zoomFactor;
+
+    if (newScale < zoom.min) newScale = zoom.min;
+    if (newScale > zoom.max) newScale = zoom.max;
+
+    setScale(newScale);
+  }
+
   useEffect(() => {
     if (focusOnCountry) {
       rotateToCountry(focusOnCountry);
@@ -102,6 +114,23 @@ const Globe = ({
           className="sphere-glow"
           style={{ width: `${scale * 4}px`, height: `${scale * 4}px` }}
         />
+
+        <div className="zoom-buttons">
+          <button
+            className="button--icon"
+            onClick={() => zoomGlobe(false)}
+            disabled={scale === zoom.min}
+          >
+            <ZoomOut />
+          </button>
+          <button
+            className="button--icon"
+            onClick={() => zoomGlobe(true)}
+            disabled={scale === zoom.max}
+          >
+            <ZoomIn />
+          </button>
+        </div>
 
         <ComposableMap
           data-tip=""
@@ -141,14 +170,6 @@ const Globe = ({
           }}
           onMouseLeave={() => {
             setIsDragging(false);
-          }}
-          onWheel={(e) => {
-            let newScale = scale - e.deltaY * 0.5;
-
-            if (newScale < zoom.min) newScale = zoom.min;
-            if (newScale > zoom.max) newScale = zoom.max;
-
-            setScale(newScale);
           }}
         >
           <Sphere

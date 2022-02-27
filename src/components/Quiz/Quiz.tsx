@@ -21,7 +21,22 @@ export const Quiz = ({
   setSelectedCountry,
 }: Props) => {
   const [value, setValue] = useState("");
-  const [quizMessage, setQuizMessage] = useState("");
+
+  const defaultQuizMessage = "Type a guess to get started...";
+  const [quizMessage, setQuizMessage] = useState(defaultQuizMessage);
+
+  function animateProgressBar() {
+    // const el = document.getElementById("progress-bar")!;
+    const animatedItems = document.getElementsByClassName("animate-on-guess")!;
+
+    for (let el of animatedItems) {
+      el.classList.add("animate");
+
+      setTimeout(() => {
+        el.classList.remove("animate");
+      }, 1000);
+    }
+  }
 
   useEffect(() => {
     const userGuess = normalizeString(value);
@@ -41,6 +56,7 @@ export const Quiz = ({
         setSelectedCountry(matchingCountryCode);
         setValue("");
         setQuizMessage("You guessed " + matchingCountryName + "!");
+        animateProgressBar();
       }
     }
   }, [value, guessedCountries]);
@@ -48,15 +64,15 @@ export const Quiz = ({
   return (
     <div className="quiz">
       <div className="quiz__left">
-        <div className="quiz__left__found">
-          <span>
-            Countries found:{" "}
-            <b>
+        <div className="quiz__progress">
+          <div className="quiz__progress__top">
+            <span className="quiz-message animate-on-guess">{quizMessage}</span>
+            <span className="progress-count">
               {guessedCountries.length} of {countryNum}
-            </b>
-          </span>
+            </span>
+          </div>
 
-          <div className="progress-bar">
+          <div className="progress-bar animate-on-guess">
             <div
               className="progress-bar__completed"
               style={{
@@ -66,28 +82,30 @@ export const Quiz = ({
           </div>
 
           <button
-            className="reset-guesses-button"
+            className="button--simple"
             onClick={() => {
-              setGuessedCountries([]);
+              if (
+                window.confirm("Are you sure you want to reset your guesses?")
+              ) {
+                setGuessedCountries([]);
+                setQuizMessage(defaultQuizMessage);
+                setSelectedCountry("");
+              }
             }}
           >
-            Reset Guesses
+            Reset
           </button>
         </div>
-
-        <span className="quiz-message">{quizMessage}</span>
       </div>
 
-      <div className="quiz__right">
-        <input
-          type="text"
-          placeholder="Type a country..."
-          value={value}
-          onChange={(e) => {
-            setValue(e.target.value);
-          }}
-        />
-      </div>
+      <input
+        type="text"
+        placeholder="Type a country..."
+        value={value}
+        onChange={(e) => {
+          setValue(e.target.value);
+        }}
+      />
     </div>
   );
 };

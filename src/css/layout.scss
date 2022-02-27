@@ -12,9 +12,20 @@
   }
 }
 
-.display {
+.top {
   display: flex;
-  align-items: center;
-  gap: 40px;
-  padding-top: 20px;
+  align-items: stretch;
+  gap: 20px;
+  padding: 20px 0 60px;
+
+  &__globe {
+    width: calc(var(--globe-radius) * 2);
+    height: calc(var(--globe-radius) * 2);
+  }
+  &__display {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+  }
 }

@@ -1,106 +1,131 @@
 .quiz {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 40px;
-  width: 100%;
+  flex-direction: column;
+  gap: 20px;
 
-  padding: 40px 0;
-
-  &__left {
+  &__progress {
     display: flex;
-    align-items: center;
-    width: calc(var(--globe-radius) * 2);
+    flex-direction: column;
+    gap: 10px;
 
-    &__found {
+    text-align: center;
+
+    &__top {
       display: flex;
-      flex-direction: column;
-      gap: 10px;
-      width: 220px;
-      text-align: center;
+      align-items: center;
+      justify-content: space-between;
 
       span {
         font-size: 16px;
       }
-
-      .progress-bar {
-        overflow: hidden;
-        position: relative;
-        width: 100%;
-        height: 10px;
-
-        border-radius: 10px;
-        background: var(--K200);
-        box-shadow: 1px 2px 4px rgba(var(--K700-rgb), 0.1);
-
-        &__completed {
-          position: absolute;
-          top: 0;
-          height: 100%;
-
-          background: var(--status-green);
-        }
-      }
-
-      .reset-guesses-button {
-        outline: none;
-        border: unset;
-        background: unset;
-
-        font-size: 14px;
-        font-weight: 600;
-        color: var(--K600);
-
-        &:hover {
-          color: var(--status-red);
-        }
-      }
     }
 
     .quiz-message {
-      flex: 1;
+      $defaultColor: var(--K400);
+      $glowColor: var(--status-green);
 
       font-size: 16px;
       font-weight: 500;
-      color: var(--K600);
-      text-align: center;
+      color: $defaultColor;
+
+      animation-duration: 1s;
+      animation-timing-function: ease;
+      animation-iteration-count: 1;
+
+      &.animate {
+        animation-name: glow-text;
+      }
+
+      @keyframes glow-text {
+        0% {
+          color: $defaultColor;
+        }
+        50% {
+          color: $glowColor;
+        }
+        100% {
+          color: $defaultColor;
+        }
+      }
+    }
+
+    .progress-count {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .progress-bar {
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      height: 10px;
+
+      border-radius: 10px;
+      background: var(--K150);
+
+      animation-duration: 1s;
+      animation-timing-function: ease;
+      animation-iteration-count: 1;
+
+      &.animate {
+        animation-name: glow-bar;
+      }
+
+      &__completed {
+        position: absolute;
+        top: 0;
+        height: 100%;
+
+        background: var(--status-green);
+      }
+    }
+
+    @keyframes glow-bar {
+      0% {
+        background: var(--K150);
+      }
+      50% {
+        background: rgba(var(--status-green-rgb), 0.3);
+      }
+      100% {
+        background: var(--K150);
+      }
     }
   }
 
-  &__right {
-    flex: 1;
+  button {
+    text-align: right;
+    font-size: 12px;
+    margin-top: -4px;
+  }
 
-    input {
-      transition: 0.2s ease all;
-      display: flex;
-      width: 100%;
-      height: 50px;
-      padding: 0 14px;
+  input {
+    transition: 0.2s ease all;
+    display: flex;
+    width: 100%;
+    height: 50px;
+    padding: 0 14px;
 
-      border-radius: 4px;
-      border: 1px solid var(--K300);
+    border-radius: 4px;
+    border: 2px solid var(--K200);
 
-      font-size: 18px;
-      font-weight: 600;
-      color: var(--K800);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--K800);
 
-      &:hover,
-      &:focus {
-        border-color: var(--K500);
-      }
+    &:hover {
+      border-color: var(--K400);
+      box-shadow: 0 0 8px rgba(var(--K700-rgb), 0.2);
+    }
 
-      &:hover {
-        box-shadow: 0 0 6px rgba(var(--K700-rgb), 0.2);
-      }
+    &:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.3);
+    }
 
-      &:focus {
-        outline: none;
-        box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.3);
-      }
-
-      &::placeholder {
-        color: var(--K300);
-      }
+    &::placeholder {
+      color: var(--K300);
     }
   }
 }
