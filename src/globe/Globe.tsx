@@ -6,9 +6,9 @@ import {
   Sphere,
 } from "react-simple-maps";
 import clsx from "clsx";
-import { countriesData } from "./countriesData";
 import { globeRadius, zoom } from "./constants";
 import "./Globe.scss";
+import { countryList } from "./countryData";
 
 const geoUrl = "./data/world-110m.json";
 
@@ -40,6 +40,8 @@ interface Props {
   setGuessedCountries: (countries: string[]) => void;
   focusOnCountry: string;
   setFocusOnCountry: (country: string) => void;
+  selectedCountry: string;
+  setSelectedCountry: (country: string) => void;
   allowSelection: boolean;
   allowHover: boolean;
 }
@@ -49,6 +51,8 @@ const Globe = ({
   setGuessedCountries,
   focusOnCountry,
   setFocusOnCountry,
+  selectedCountry,
+  setSelectedCountry,
   allowSelection,
   allowHover,
 }: Props) => {
@@ -59,12 +63,12 @@ const Globe = ({
   const [mouseOnDown, setMouseOnDown] = useState({ x: 0, y: 0 });
   const [targetOnDown, setTargetOnDown] = useState({ x: 0, y: 0 });
 
-  function rotateToCountry(country: string) {
-    const countries = countriesData.filter((obj) => {
-      return obj.country_code === country;
-    });
+  function rotateToCountry(targetCountry: string) {
+    const latLon = countryList.filter(
+      (country) => country.code === targetCountry
+    )[0].latLon;
 
-    setRotation([-countries[0].latlng[1], -countries[0].latlng[0], 0]);
+    setRotation([-latLon[1], -latLon[0], 0]);
   }
 
   function selectCountry(country: string) {
@@ -167,6 +171,7 @@ const Globe = ({
                         const clickedCountry = geo.properties.ISO_A2;
                         rotateToCountry(clickedCountry);
                         selectCountry(clickedCountry);
+                        setSelectedCountry(clickedCountry);
                       }
                     }}
                   />
