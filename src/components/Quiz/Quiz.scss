@@ -8,6 +8,18 @@
     flex-direction: column;
     gap: 14px;
 
+    .input-instruction {
+      padding: 14px;
+
+      border-radius: 4px;
+      background: var(--K100);
+
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--K700);
+    }
+
     input {
       transition: 0.2s ease all;
       display: flex;

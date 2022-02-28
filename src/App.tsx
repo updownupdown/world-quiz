@@ -9,7 +9,6 @@ import {
   countryNames,
   getCountryByCode,
   getCountryByName,
-  getRandomCountryList,
 } from "./data/countryData";
 import { animateProgressBar, normalizeString } from "./utils/utils";
 import { CountryData } from "./data/countryList";
@@ -94,7 +93,11 @@ function App() {
       setInputHint(countryInfo.name ?? "");
     }
 
-    if (quizMode === Quizzes.TypeCapital || quizMode === Quizzes.GuessByFlag) {
+    if (
+      quizMode === Quizzes.TypeCapital ||
+      quizMode === Quizzes.GuessByFlag ||
+      quizMode === Quizzes.FindCountries
+    ) {
       setFocusOnCountry(countryCode);
     }
   }
@@ -234,11 +237,7 @@ function App() {
             <div className="top__globe">
               <Globe
                 guessedCountries={guessedCountries}
-                setGuessedCountries={setGuessedCountries}
                 focusOnCountry={focusOnCountry}
-                setFocusOnCountry={setFocusOnCountry}
-                selectedCountry={selectedCountry}
-                setSelectedCountry={setSelectedCountry}
                 allowSelection={quizMode === Quizzes.FindCountries}
                 allowHover={quizMode === Quizzes.FindCountries}
                 setClickedCountry={setClickedCountry}

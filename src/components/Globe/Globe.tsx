@@ -47,11 +47,7 @@ interface GeoProps {
 
 interface Props {
   guessedCountries: string[];
-  setGuessedCountries: (countries: string[]) => void;
   focusOnCountry: string;
-  setFocusOnCountry: (country: string) => void;
-  selectedCountry: string;
-  setSelectedCountry: (country: string) => void;
   allowSelection: boolean;
   allowHover: boolean;
   setClickedCountry: (country: string) => void;
@@ -60,11 +56,7 @@ interface Props {
 
 const Globe = ({
   guessedCountries,
-  setGuessedCountries,
   focusOnCountry,
-  setFocusOnCountry,
-  selectedCountry,
-  setSelectedCountry,
   allowSelection,
   allowHover,
   setClickedCountry,
@@ -74,7 +66,7 @@ const Globe = ({
   const [scale, setScale] = useState(zoom.default);
 
   const [isDragging, setIsDragging] = useState(false);
-  const [mouseOnDown, setMouseOnDown] = useState({ x: 0, y: 0 });
+  const [positionOnDown, setPositionOnDown] = useState({ x: 0, y: 0 });
   const [targetOnDown, setTargetOnDown] = useState({ x: 0, y: 0 });
 
   function rotateToCountry(targetCountry: string) {
@@ -96,16 +88,29 @@ const Globe = ({
   }
 
   useEffect(() => {
-    if (focusOnCountry) {
+    if (focusOnCountry && quizMode !== Quizzes.FindCountries) {
       rotateToCountry(focusOnCountry);
     }
   }, [focusOnCountry]);
 
-  function handleInteractionStart(event: any) {
-    setMouseOnDown({
-      x: event.clientX - window.innerWidth / 2,
-      y: event.clientY - window.innerHeight / 2,
-    });
+  function handleInteractionStart(event: React.TouchEvent | React.MouseEvent) {
+    let position = { x: 0, y: 0 };
+
+    console.log(event);
+
+    if (event.nativeEvent instanceof TouchEvent) {
+      position = {
+        x: event.nativeEvent.changedTouches[0].clientX - window.innerWidth / 2,
+        y: event.nativeEvent.changedTouches[0].clientY - window.innerHeight / 2,
+      };
+    } else if (event.nativeEvent instanceof MouseEvent) {
+      position = {
+        x: event.nativeEvent.clientX - window.innerWidth / 2,
+        y: event.nativeEvent.clientY - window.innerHeight / 2,
+      };
+    }
+
+    setPositionOnDown(position);
     setTargetOnDown({
       x: rotation[0],
       y: rotation[1],
@@ -113,17 +118,32 @@ const Globe = ({
     setIsDragging(true);
   }
 
-  function handleInteractionMove(event: any) {
+  function handleInteractionMove(event: React.TouchEvent | React.MouseEvent) {
     if (isDragging) {
-      const mouse = {
-        x: event.clientX - window.innerWidth / 2,
-        y: event.clientY - window.innerHeight / 2,
-      };
-      setRotation([
-        targetOnDown.x + (mouse.x - mouseOnDown.x) * 0.2 * (500 / scale),
-        targetOnDown.y + (mouse.y - mouseOnDown.y) * -0.2 * (500 / scale),
+      let movement = { x: 0, y: 0 };
+
+      if (event.nativeEvent instanceof TouchEvent) {
+        movement = {
+          x:
+            event.nativeEvent.changedTouches[0].clientX - window.innerWidth / 2,
+          y:
+            event.nativeEvent.changedTouches[0].clientY -
+            window.innerHeight / 2,
+        };
+      } else if (event.nativeEvent instanceof MouseEvent) {
+        movement = {
+          x: event.nativeEvent.clientX - window.innerWidth / 2,
+          y: event.nativeEvent.clientY - window.innerHeight / 2,
+        };
+      }
+
+      const newPosition: [number, number, number] = [
+        targetOnDown.x + (movement.x - positionOnDown.x) * 0.2 * (500 / scale),
+        targetOnDown.y + (movement.y - positionOnDown.y) * -0.2 * (500 / scale),
         0,
-      ]);
+      ];
+
+      setRotation(newPosition);
     }
   }
 
@@ -171,15 +191,18 @@ const Globe = ({
           onMouseDown={(event) => {
             handleInteractionStart(event);
           }}
-          // onTouchStart={(event) => {
-          //   handleInteractionStart(event);
-          // }}
+          onTouchStart={(event) => {
+            handleInteractionStart(event);
+          }}
           onMouseMove={(event) => {
             handleInteractionMove(event);
           }}
-          // onTouchMoveCapture={(event) => {
-          //   handleInteractionMove(event);
-          // }}
+          onTouchMove={(event) => {
+            handleInteractionMove(event);
+          }}
+          onTouchEnd={() => {
+            handleInteractionEnd();
+          }}
           onMouseUp={() => {
             handleInteractionEnd();
           }}

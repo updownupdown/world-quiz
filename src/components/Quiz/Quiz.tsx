@@ -74,20 +74,24 @@ export const Quiz = ({
       </div>
 
       <div className="quiz__input">
-        <input
-          type="text"
-          placeholder="Type a country..."
-          value={inputValue}
-          onKeyDown={(e) => {
-            if (e.key === "?") {
-              e.preventDefault();
-              triggerHint();
-            }
-          }}
-          onChange={(e) => {
-            setInputValue(e.target.value);
-          }}
-        />
+        {quizMode === Quizzes.FindCountries ? (
+          <p className="input-instruction">Click the country on the globe.</p>
+        ) : (
+          <input
+            type="text"
+            placeholder="Type a country..."
+            value={inputValue}
+            onKeyDown={(e) => {
+              if (e.key === "?") {
+                e.preventDefault();
+                triggerHint();
+              }
+            }}
+            onChange={(e) => {
+              setInputValue(e.target.value);
+            }}
+          />
+        )}
 
         <span
           className={clsx(

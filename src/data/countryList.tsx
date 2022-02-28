@@ -1,6 +1,7 @@
 export interface CountryData {
   code: string;
   name: string;
+  altName?: string;
   continent: string;
   region: string;
   subregion: string;
@@ -1174,7 +1175,8 @@ export const countryList: CountryData[] = [
   },
   {
     code: "KR",
-    name: "Republic of Korea",
+    name: "South Korea",
+    altName: "Republic of Korea",
     continent: "Asia",
     region: "Asia",
     subregion: "Eastern Asia",
@@ -1768,7 +1770,8 @@ export const countryList: CountryData[] = [
   },
   {
     code: "KP",
-    name: "Dem. Rep. Korea",
+    name: "North Korea",
+    altName: "Dem. Rep. Korea",
     continent: "Asia",
     region: "Asia",
     subregion: "Eastern Asia",
