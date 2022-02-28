@@ -6,5 +6,7 @@ A quiz to learn country names, locations, and flags.
 
 ## To Do:
 
-- Fine tune list of "minor" countries"
-- Don't show capital in info list for countries that don't have them.
+- Add touch events to globe
+- Disable input on "find country on globe" mode
+- Fine tune list of "minor" countries
+- Don't show capital in info list for countries that don't have them (i.e. Antarctica).
