@@ -1,9 +1,25 @@
+@import "../../css/media.scss";
+
 .info {
   display: flex;
   flex-direction: column;
   justify-content: center;
   flex: 1;
-  min-height: 320px;
+  gap: 20px;
+
+  @media #{$query-max-md} {
+    flex-direction: row;
+    align-items: center;
+    min-height: 160px;
+
+    .info__text {
+      flex: 1;
+      order: 1;
+    }
+    img {
+      order: 2;
+    }
+  }
 
   .instructions {
     padding: 20px 20px 24px;
@@ -23,10 +39,16 @@
   }
 
   img {
-    margin-bottom: 20px;
     width: 220px;
     height: auto;
     box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.1), 4px 8px 20px rgba(0, 0, 0, 0.08);
+
+    @media #{$query-min-md} {
+      width: 220px;
+    }
+    @media #{$query-max-md} {
+      width: 120px;
+    }
   }
 
   h3 {
