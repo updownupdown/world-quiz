@@ -22,8 +22,23 @@ const zoom = {
   default: globeRadius / 2.2,
 };
 
+interface DefaultProps {
+  rotation: [number, number, number];
+  scale: number;
+  coordinates: { x: number; y: number };
+}
+
+const defaults: DefaultProps = {
+  rotation: [0, 0, 0],
+  scale: zoom.default,
+  coordinates: { x: 0, y: 0 },
+};
+
 interface GeoProps {
-  geometry: any;
+  geometry: {
+    coordinates: [];
+    type: string;
+  };
   properties: {
     ABBREV?: string;
     CONTINENT?: string;
@@ -41,7 +56,7 @@ interface GeoProps {
     SUBREGION?: string;
   };
   rsmKey: string;
-  svgPath: any;
+  svgPath: string;
   type: string;
 }
 
@@ -62,12 +77,13 @@ const Globe = ({
   setClickedCountry,
   quizMode,
 }: Props) => {
-  const [rotation, setRotation] = useState<[number, number, number]>([0, 0, 0]);
+  const [rotation, setRotation] = useState<[number, number, number]>(
+    defaults.rotation
+  );
   const [scale, setScale] = useState(zoom.default);
-
   const [isDragging, setIsDragging] = useState(false);
-  const [positionOnDown, setPositionOnDown] = useState({ x: 0, y: 0 });
-  const [targetOnDown, setTargetOnDown] = useState({ x: 0, y: 0 });
+  const [positionOnDown, setPositionOnDown] = useState(defaults.coordinates);
+  const [targetOnDown, setTargetOnDown] = useState(defaults.coordinates);
 
   function rotateToCountry(targetCountry: string) {
     const latLon = countryList.filter(
@@ -93,10 +109,13 @@ const Globe = ({
     }
   }, [focusOnCountry]);
 
-  function handleInteractionStart(event: React.TouchEvent | React.MouseEvent) {
-    let position = { x: 0, y: 0 };
+  useEffect(() => {
+    setRotation(defaults.rotation);
+    setScale(defaults.scale);
+  }, [quizMode]);
 
-    console.log(event);
+  function handleInteractionStart(event: React.TouchEvent | React.MouseEvent) {
+    let position = defaults.coordinates;
 
     if (event.nativeEvent instanceof TouchEvent) {
       position = {
@@ -120,7 +139,7 @@ const Globe = ({
 
   function handleInteractionMove(event: React.TouchEvent | React.MouseEvent) {
     if (isDragging) {
-      let movement = { x: 0, y: 0 };
+      let movement = defaults.coordinates;
 
       if (event.nativeEvent instanceof TouchEvent) {
         movement = {
@@ -162,7 +181,10 @@ const Globe = ({
       >
         <div
           className="sphere-glow"
-          style={{ width: `${scale * 4}px`, height: `${scale * 4}px` }}
+          style={{
+            width: `${((scale * 2) / globeRadius) * 100}%`,
+            height: `${((scale * 2) / globeRadius) * 100}%`,
+          }}
         />
 
         <div className="zoom-buttons">

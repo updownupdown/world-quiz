@@ -63,14 +63,6 @@
     mix-blend-mode: hard-light;
     transform: translate(-50%, -50%);
 
-    @media #{$query-max-md} {
-      display: none;
-    }
-
-    // .globe--dragging & {
-    //   box-shadow: 1px 2px 14px rgba(0, 0, 0, 0.2), 4px 8px 32px rgba(0, 0, 0, 0.2);
-    // }
-
     &:before {
       content: "";
       position: absolute;
