@@ -117,11 +117,8 @@ export const Modal = ({
           onClick={() => {
             setQuizMode(optionQuizMode);
 
-            const includeMinorInList =
-              includeMinor && optionQuizMode !== Quizzes.FindCountries;
-
             setRandomList(
-              getRandomCountryList(includeMinorInList, optionLimit)
+              getRandomCountryList(optionIncludeMinor, optionLimit)
             );
 
             let numberOfCountries = optionLimit;

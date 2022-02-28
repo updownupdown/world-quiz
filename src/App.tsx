@@ -28,9 +28,7 @@ function App() {
     CountryData | undefined
   >(undefined);
 
-  const [quizMode, setQuizMode] = useState<QuizModes | undefined>(
-    Quizzes.TypeCountries
-  );
+  const [quizMode, setQuizMode] = useState<QuizModes | undefined>(undefined);
   const [includeMinor, setIncludeMinor] = useState(false);
 
   const [time, setTime] = useState(0);
@@ -81,7 +79,7 @@ function App() {
       return;
     }
 
-    let selectIndex = firstTime ? 1 : positionInList + 1;
+    let selectIndex = firstTime ? 0 : positionInList + 1;
     const countryCode = randomList[selectIndex];
     const countryInfo = getCountryByCode(countryCode);
 
@@ -229,6 +227,7 @@ function App() {
                 setInputValue={setInputValue}
                 inputHint={inputHint}
                 countryNum={countryNum}
+                quizMode={quizMode}
               />
             </div>
 

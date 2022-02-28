@@ -39,30 +39,37 @@
     }
 
     .quiz-hint {
-      cursor: pointer;
-      transition: 0.2s ease background-color;
       position: relative;
-      padding: 6px 10px;
 
-      background: var(--white);
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--K700);
 
-      &:hover {
-        background: var(--K100);
+      &--empty {
+        color: var(--K300);
       }
 
-      &__label {
-        padding-right: 4px;
-      }
+      &--clickable {
+        cursor: pointer;
+        transition: 0.2s ease background-color;
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
 
-      &__text {
-        position: relative;
-        z-index: 1;
-        font-size: 16px;
-        font-weight: 500;
-        color: var(--K700);
+        padding: 6px 10px;
+        background: var(--white);
 
-        &--empty {
-          color: var(--K300);
+        &:hover {
+          background: var(--K100);
+        }
+
+        &__label {
+          margin-left: auto;
+        }
+
+        &__text {
+          position: relative;
+          z-index: 1;
         }
       }
     }
