@@ -32,7 +32,7 @@ export const Modal = ({
     Quizzes.TypeCountries
   );
   const [optionIncludeMinor, setOptionIncludeMinor] = useState(false);
-  const [optionLimit, setOptionLimit] = useState(5);
+  const [optionLimit, setOptionLimit] = useState(20);
 
   if (!isModalOpen) return <></>;
 
