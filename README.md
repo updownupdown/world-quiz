@@ -2,7 +2,7 @@
 
 A quiz to learn country names, locations, and flags.
 
-<a href="https://updownupdown.github.io/world-quiz" target="_blank">View project</a>
+<a href="https://updownupdown.github.io/world-quiz" target="_blank" rel="noreferrer">View project</a>
 
 ## To Do:
 

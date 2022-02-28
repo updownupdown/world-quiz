@@ -19,7 +19,8 @@ $theme-colors: (
   "K150": #edeef0,
   "K125": #f1f3f4,
   "K100": #f7f8f9,
-  "accent": #3eab60,
+  "accent": #1da2cb,
+  "accent-hover": #1885a6,
   "status-green": #3eab60,
   "status-orange": #f19c2d,
   "status-red": #d75453,
@@ -114,20 +115,20 @@ button {
 
     border-radius: 4px;
     border: unset;
-    background: var(--white);
-    box-shadow: 1px 2px 8px rgba(var(--K800-rgb), 0.1);
+    background: var(--accent);
+    box-shadow: 1px 2px 8px rgba(var(--K800-rgb), 0.15);
 
     font-size: 16px;
-    font-weight: 600;
-    color: var(--K800);
+    font-weight: 700;
+    color: var(--white);
 
     &:focus {
       outline: none;
     }
 
     &:hover {
-      background: var(--K50);
-      box-shadow: 2px 4px 12px rgba(var(--K800-rgb), 0.2);
+      background: var(--accent-hover);
+      box-shadow: 2px 4px 12px rgba(var(--K800-rgb), 0.3);
     }
   }
 

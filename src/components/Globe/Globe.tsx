@@ -6,10 +6,11 @@ import {
   Sphere,
 } from "react-simple-maps";
 import clsx from "clsx";
-import { countryList } from "../../data/countryData";
-import "./Globe.scss";
+import { countryList } from "../../data/countryList";
 import { ZoomOut } from "../Icons/ZoomOut";
 import { ZoomIn } from "../Icons/ZoomIn";
+import "./Globe.scss";
+import { QuizModes, Quizzes } from "../Options/Options";
 
 const geoUrl = process.env.PUBLIC_URL + "/data/world-110m.json";
 
@@ -53,6 +54,8 @@ interface Props {
   setSelectedCountry: (country: string) => void;
   allowSelection: boolean;
   allowHover: boolean;
+  setClickedCountry: (country: string) => void;
+  quizMode: QuizModes | undefined;
 }
 
 const Globe = ({
@@ -64,6 +67,8 @@ const Globe = ({
   setSelectedCountry,
   allowSelection,
   allowHover,
+  setClickedCountry,
+  quizMode,
 }: Props) => {
   const [rotation, setRotation] = useState<[number, number, number]>([0, 0, 0]);
   const [scale, setScale] = useState(zoom.default);
@@ -80,10 +85,6 @@ const Globe = ({
     setRotation([-latLon[1], -latLon[0], 0]);
   }
 
-  function selectCountry(country: string) {
-    setGuessedCountries([country]);
-  }
-
   function zoomGlobe(zoomIn: boolean) {
     const zoomFactor = 50;
     let newScale = zoomIn ? scale + zoomFactor : scale - zoomFactor;
@@ -97,9 +98,8 @@ const Globe = ({
   useEffect(() => {
     if (focusOnCountry) {
       rotateToCountry(focusOnCountry);
-      setFocusOnCountry("");
     }
-  }, [focusOnCountry, setFocusOnCountry]);
+  }, [focusOnCountry]);
 
   return (
     <>
@@ -182,9 +182,16 @@ const Globe = ({
           <Geographies geography={geoUrl}>
             {({ geographies }) =>
               geographies.map((geo: GeoProps) => {
-                const isSelected = guessedCountries.includes(
-                  geo.properties.ISO_A2
-                );
+                let isSelected = false;
+
+                if (quizMode === Quizzes.TypeCountries) {
+                  isSelected = guessedCountries.includes(geo.properties.ISO_A2);
+                } else if (
+                  quizMode === Quizzes.GuessByFlag ||
+                  quizMode === Quizzes.TypeCapital
+                ) {
+                  isSelected = focusOnCountry === geo.properties.ISO_A2;
+                }
 
                 return (
                   <Geography
@@ -194,12 +201,12 @@ const Globe = ({
                     )}
                     key={geo.rsmKey}
                     geography={geo}
-                    onMouseDown={() => {
-                      if (allowSelection) {
-                        const clickedCountry = geo.properties.ISO_A2;
-                        rotateToCountry(clickedCountry);
-                        selectCountry(clickedCountry);
-                        setSelectedCountry(clickedCountry);
+                    onClick={() => {
+                      if (!isDragging && allowSelection) {
+                        const clickedCountryCode =
+                          geo.properties.ISO_A2 ?? undefined;
+
+                        setClickedCountry(clickedCountryCode);
                       }
                     }}
                   />

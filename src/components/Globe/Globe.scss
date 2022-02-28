@@ -34,6 +34,14 @@
     display: flex;
     gap: 12px;
     padding: 14px;
+
+    .button--icon {
+      background: var(--white);
+
+      &:hover {
+        background: var(--K100);
+      }
+    }
   }
 
   .sphere-glow {

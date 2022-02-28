@@ -1,13 +1,15 @@
 import Flag from "react-world-flags";
-import { countryList } from "../../data/countryData";
+import { countryList } from "../../data/countryList";
 import { formatPopulationNumber } from "../../utils/utils";
+import { QuizModes, Quizzes } from "../Options/Options";
 import "./Info.scss";
 
 interface Props {
   selectedCountry: string;
+  quizMode: QuizModes | undefined;
 }
 
-export const Info = ({ selectedCountry }: Props) => {
+export const Info = ({ selectedCountry, quizMode }: Props) => {
   const instructions = (
     <div className="instructions">
       <h3>Instructions</h3>
@@ -25,9 +27,12 @@ export const Info = ({ selectedCountry }: Props) => {
       {selectedCountry ? (
         <>
           <Flag code={countryData.code} />
-          <h3>{countryData.name}</h3>
+          <h3>{quizMode === Quizzes.GuessByFlag ? "???" : countryData.name}</h3>
           <ul>
-            <li className="capital">{countryData.capital}</li>
+            <li className="capital">
+              Capital:{" "}
+              {quizMode === Quizzes.TypeCapital ? "???" : countryData.capital}
+            </li>
             <li>
               {countryData.subregion}, {countryData.region} ({countryData.code})
             </li>

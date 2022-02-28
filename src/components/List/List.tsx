@@ -1,13 +1,15 @@
-import { useMemo } from "react";
-import { countryList, regionList } from "../../data/countryData";
+import React, { useMemo } from "react";
+import { regionList } from "../../data/countryData";
+import { countryList } from "../../data/countryList";
 import clsx from "clsx";
 import "./List.scss";
 
 interface Props {
   guessedCountries: string[];
+  includeMinor: boolean;
 }
 
-export const List = ({ guessedCountries }: Props) => {
+export const List = ({ guessedCountries, includeMinor }: Props) => {
   const guessedCountryList = useMemo(() => {
     return regionList.map((region) => {
       return (
@@ -15,7 +17,13 @@ export const List = ({ guessedCountries }: Props) => {
           <h3>{region}</h3>
           <ul>
             {countryList.map((country) => {
-              if (country.region !== region) return;
+              if (
+                country.region !== region ||
+                (country.minor && !includeMinor)
+              ) {
+                return <React.Fragment key={country.code}></React.Fragment>;
+              }
+
               const isGuessed = guessedCountries.includes(country.code);
 
               return (
@@ -31,7 +39,7 @@ export const List = ({ guessedCountries }: Props) => {
         </div>
       );
     });
-  }, [guessedCountries]);
+  }, [guessedCountries, includeMinor]);
 
   return <div className="list">{guessedCountryList}</div>;
 };
