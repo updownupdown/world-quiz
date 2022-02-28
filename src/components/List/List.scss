@@ -18,12 +18,12 @@
   ul {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 8px;
 
     li {
       position: relative;
       list-style-type: none;
-      line-height: 1.2;
+      line-height: 1;
 
       &.not-guessed {
         transition: 0.5s ease color;
@@ -42,8 +42,6 @@
 
           border-radius: 4px;
           background: var(--K100);
-
-          // transform: translateY(-50%);
         }
 
         &:hover {

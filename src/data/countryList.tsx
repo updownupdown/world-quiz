@@ -1,7 +1,6 @@
 export interface CountryData {
   code: string;
   name: string;
-  altName?: string;
   continent: string;
   region: string;
   subregion: string;
@@ -9,6 +8,7 @@ export interface CountryData {
   capital: string | null;
   population: number;
   minor?: boolean;
+  small?: boolean;
 }
 
 export const countryList: CountryData[] = [
@@ -350,6 +350,7 @@ export const countryList: CountryData[] = [
     latLon: [13.16666666, -59.53333333],
     capital: "Bridgetown",
     population: 292336,
+    minor: true,
   },
   {
     code: "BN",
@@ -360,6 +361,7 @@ export const countryList: CountryData[] = [
     latLon: [4.5, 114.66666666],
     capital: "Bandar Seri Begawan",
     population: 443593,
+    small: true,
   },
   {
     code: "BT",
@@ -501,6 +503,8 @@ export const countryList: CountryData[] = [
     latLon: [-12.16666666, 44.25],
     capital: "Moroni",
     population: 808080,
+    minor: true,
+    small: true,
   },
   {
     code: "CV",
@@ -511,6 +515,8 @@ export const countryList: CountryData[] = [
     latLon: [16, -24],
     capital: "Praia",
     population: 560899,
+    minor: true,
+    small: true,
   },
   {
     code: "CR",
@@ -552,6 +558,7 @@ export const countryList: CountryData[] = [
     latLon: [19.5, -80.5],
     capital: "George Town",
     population: 58441,
+    minor: true,
   },
   {
     code: "CY",
@@ -602,6 +609,7 @@ export const countryList: CountryData[] = [
     latLon: [15.41666666, -61.33333333],
     capital: "Roseau",
     population: 73897,
+    minor: true,
   },
   {
     code: "DK",
@@ -877,6 +885,7 @@ export const countryList: CountryData[] = [
     latLon: [12.11666666, -61.66666666],
     capital: "St. George's",
     population: 111724,
+    minor: true,
   },
   {
     code: "GL",
@@ -928,6 +937,8 @@ export const countryList: CountryData[] = [
     latLon: [22.267, 114.188],
     capital: "City of Victoria",
     population: 7191503,
+    minor: true,
+    small: true,
   },
   {
     code: "HN",
@@ -1161,6 +1172,7 @@ export const countryList: CountryData[] = [
     latLon: [1.41666666, 173],
     capital: "South Tarawa",
     population: 108145,
+    minor: true,
   },
   {
     code: "KN",
@@ -1176,7 +1188,6 @@ export const countryList: CountryData[] = [
   {
     code: "KR",
     name: "South Korea",
-    altName: "Republic of Korea",
     continent: "Asia",
     region: "Asia",
     subregion: "Eastern Asia",
@@ -1266,6 +1277,7 @@ export const countryList: CountryData[] = [
     capital: "Vaduz",
     population: 38244,
     minor: true,
+    small: true,
   },
   {
     code: "LK",
@@ -1306,6 +1318,8 @@ export const countryList: CountryData[] = [
     latLon: [49.75, 6.16666666],
     capital: "Luxembourg",
     population: 594130,
+    minor: true,
+    small: true,
   },
   {
     code: "LV",
@@ -1388,6 +1402,8 @@ export const countryList: CountryData[] = [
     latLon: [3.25, 73],
     capital: "Malé",
     population: 392709,
+    minor: true,
+    small: true,
   },
   {
     code: "MX",
@@ -1439,6 +1455,8 @@ export const countryList: CountryData[] = [
     latLon: [35.83333333, 14.58333333],
     capital: "Valletta",
     population: 416338,
+    minor: true,
+    small: true,
   },
   {
     code: "MM",
@@ -1521,6 +1539,8 @@ export const countryList: CountryData[] = [
     latLon: [-20.28333333, 57.55],
     capital: "Port Louis",
     population: 1356388,
+    minor: true,
+    small: true,
   },
   {
     code: "MW",
@@ -1771,7 +1791,6 @@ export const countryList: CountryData[] = [
   {
     code: "KP",
     name: "North Korea",
-    altName: "Dem. Rep. Korea",
     continent: "Asia",
     region: "Asia",
     subregion: "Eastern Asia",
@@ -2176,6 +2195,7 @@ export const countryList: CountryData[] = [
     latLon: [-20, -175],
     capital: "Nuku'alofa",
     population: 106479,
+    minor: true,
   },
   {
     code: "TT",

@@ -38,7 +38,11 @@ export function getCountryByCode(code: string) {
 }
 
 // Get random list of countries
-export function getRandomCountryList(includeMinor: boolean, limit: number) {
+export function getRandomCountryList(
+  includeMinor: boolean,
+  includeSmall: boolean,
+  limit: number
+) {
   let countries: string[] = [];
 
   countryList.forEach((country) => {

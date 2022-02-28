@@ -1,12 +1,6 @@
 import clsx from "clsx";
 import "./Toggle.scss";
 
-export interface ToggleProps {
-  label: string;
-  isCurrent: boolean;
-  onClick: () => void;
-}
-
 export interface ToggleGroupProps {
   label: string;
   children: React.ReactNode;
@@ -31,9 +25,22 @@ export const ToggleGroup = ({
   );
 };
 
-export const Toggle = ({ label, isCurrent, onClick }: ToggleProps) => {
+export interface ToggleProps {
+  label: string;
+  isCurrent: boolean;
+  onClick: () => void;
+  disabled?: boolean;
+}
+
+export const Toggle = ({
+  label,
+  isCurrent,
+  onClick,
+  disabled,
+}: ToggleProps) => {
   return (
     <button
+      disabled={disabled}
       className={clsx("toggle", isCurrent && "toggle--current")}
       onClick={() => {
         !isCurrent && onClick();

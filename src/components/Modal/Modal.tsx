@@ -4,16 +4,17 @@ import { countryNames, getRandomCountryList } from "../../data/countryData";
 import { QuizModes, Quizzes } from "../Options/Options";
 import { Toggle, ToggleGroup } from "../Modal/Toggle";
 import "./Modal.scss";
+import { useEffect } from "react";
 
 interface Props {
   isModalOpen: boolean;
   setIsModalOpen: (isOpen: boolean) => void;
   setQuizMode: (mode: QuizModes) => void;
-  includeMinor: boolean;
   setRandomList: (list: string[]) => void;
   setCountryNum: (number: number) => void;
   setIsTimePaused: (isPaused: boolean) => void;
   setIncludeMinor: (include: boolean) => void;
+  setIncludeSmall: (include: boolean) => void;
   showConfetti: boolean;
 }
 
@@ -21,18 +22,25 @@ export const Modal = ({
   isModalOpen,
   setIsModalOpen,
   setQuizMode,
-  includeMinor,
   setRandomList,
   setCountryNum,
   setIsTimePaused,
   setIncludeMinor,
+  setIncludeSmall,
   showConfetti,
 }: Props) => {
   const [optionQuizMode, setOptionQuizMode] = useState<QuizModes>(
     Quizzes.TypeCountries
   );
   const [optionIncludeMinor, setOptionIncludeMinor] = useState(false);
+  const [optionIncludeSmall, setOptionIncludeSmall] = useState(false);
   const [optionLimit, setOptionLimit] = useState(20);
+
+  useEffect(() => {
+    if (optionQuizMode === Quizzes.FindCountries) {
+      setOptionIncludeSmall(false);
+    }
+  }, [optionQuizMode]);
 
   if (!isModalOpen) return <></>;
 
@@ -112,13 +120,32 @@ export const Modal = ({
           />
         </ToggleGroup>
 
+        <ToggleGroup label="Include Small Countries">
+          <Toggle
+            disabled={optionQuizMode === Quizzes.FindCountries}
+            label="Yes"
+            isCurrent={optionIncludeSmall}
+            onClick={() => setOptionIncludeSmall(true)}
+          />
+          <Toggle
+            disabled={optionQuizMode === Quizzes.FindCountries}
+            label="No"
+            isCurrent={!optionIncludeSmall}
+            onClick={() => setOptionIncludeSmall(false)}
+          />
+        </ToggleGroup>
+
         <button
           className="button--text"
           onClick={() => {
             setQuizMode(optionQuizMode);
 
             setRandomList(
-              getRandomCountryList(optionIncludeMinor, optionLimit)
+              getRandomCountryList(
+                optionIncludeMinor,
+                optionIncludeSmall,
+                optionLimit
+              )
             );
 
             let numberOfCountries = optionLimit;
@@ -132,6 +159,7 @@ export const Modal = ({
             setIsModalOpen(false);
             setIsTimePaused(false);
             setIncludeMinor(optionIncludeMinor);
+            setIncludeSmall(optionIncludeSmall);
           }}
         >
           Start Quiz

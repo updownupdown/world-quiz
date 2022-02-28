@@ -29,6 +29,7 @@ function App() {
 
   const [quizMode, setQuizMode] = useState<QuizModes | undefined>(undefined);
   const [includeMinor, setIncludeMinor] = useState(false);
+  const [includeSmall, setIncludeSmall] = useState(false);
 
   const [time, setTime] = useState(0);
   const [isTimePaused, setIsTimePaused] = useState(true);
@@ -185,8 +186,8 @@ function App() {
   return (
     <>
       <Modal
-        includeMinor={includeMinor}
         setIncludeMinor={setIncludeMinor}
+        setIncludeSmall={setIncludeSmall}
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
         setQuizMode={setQuizMode}
@@ -250,6 +251,7 @@ function App() {
             <List
               guessedCountries={guessedCountries}
               includeMinor={includeMinor}
+              includeSmall={includeSmall}
             />
           )}
         </div>

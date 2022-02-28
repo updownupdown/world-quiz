@@ -1,8 +1,9 @@
+@import "../../css/media.scss";
+
 .toggle-group {
   $borderRadius: 6px;
 
   display: flex;
-  flex-direction: column;
   gap: 10px;
 
   .toggle-label {
@@ -29,7 +30,7 @@
     font-weight: 600;
     color: var(--K700);
 
-    &:not(.toggle--current):hover {
+    &:not(.toggle--current):not(:disabled):hover {
       background: rgba(var(--accent-rgb), 0.1);
     }
 
@@ -39,9 +40,28 @@
       border-color: var(--accent-hover);
       color: var(--accent-hover);
     }
+
+    &:disabled {
+      cursor: default;
+      color: var(--K400);
+      border-color: var(--K200);
+
+      &.toggle--current {
+        background: var(--K150);
+        border-color: var(--K300);
+      }
+    }
   }
 
   &--horizontal {
+    @media #{$query-max-sm} {
+      flex-direction: column;
+    }
+    @media #{$query-min-sm} {
+      flex-direction: row;
+      align-items: center;
+    }
+
     .toggle {
       &:not(:first-of-type) {
         margin-left: -1px;
@@ -59,6 +79,8 @@
   }
 
   &--vertical {
+    flex-direction: column;
+
     .toggle-buttons {
       flex-direction: column;
     }
