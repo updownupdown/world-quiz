@@ -2,11 +2,11 @@
   display: flex;
   gap: 20px;
   padding: 60px 0 40px;
+  flex-wrap: wrap;
 
   .region {
     flex: 1;
     min-width: 140px;
-    flex-wrap: wrap;
 
     h3 {
       margin-bottom: 12px;
@@ -25,9 +25,6 @@
       list-style-type: none;
       line-height: 1.2;
 
-      // &.not-guessed {
-      //   color: var(--K300);
-      // }
       &.not-guessed {
         transition: 0.5s ease color;
         cursor: pointer;

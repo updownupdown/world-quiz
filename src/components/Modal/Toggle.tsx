@@ -10,11 +10,21 @@ export interface ToggleProps {
 export interface ToggleGroupProps {
   label: string;
   children: React.ReactNode;
+  isVertical?: boolean;
 }
 
-export const ToggleGroup = ({ label, children }: ToggleGroupProps) => {
+export const ToggleGroup = ({
+  label,
+  children,
+  isVertical,
+}: ToggleGroupProps) => {
   return (
-    <div className="toggle-group">
+    <div
+      className={clsx(
+        "toggle-group",
+        isVertical ? "toggle-group--vertical" : "toggle-group--horizontal"
+      )}
+    >
       <span className="toggle-label">{label}</span>
       <div className="toggle-buttons">{children}</div>
     </div>

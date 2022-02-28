@@ -1,3 +1,5 @@
+@import "./media.scss";
+
 .page {
   display: flex;
   flex-direction: column;
@@ -14,6 +16,7 @@
     flex-direction: column;
     width: 100%;
     max-width: var(--content-width);
+    padding: 0 20px;
   }
 }
 
@@ -22,14 +25,24 @@
   align-items: stretch;
   gap: 20px;
 
+  @media #{$query-min-md} {
+    flex-direction: row;
+  }
+  @media #{$query-max-md} {
+    flex-direction: column;
+  }
+
   &__globe {
     width: calc(var(--globe-radius) * 2);
     height: calc(var(--globe-radius) * 2);
+
+    max-width: calc(100vw - 40px);
+    max-height: calc(100vw - 40px);
   }
   &__display {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
     flex: 1;
   }
 }

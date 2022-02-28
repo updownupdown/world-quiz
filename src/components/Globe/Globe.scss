@@ -1,9 +1,14 @@
+@import "../../css/media.scss";
+
 .globe {
   cursor: grab;
   overflow: hidden;
   position: relative;
   width: calc(var(--globe-radius) * 2);
   height: calc(var(--globe-radius) * 2);
+
+  max-width: calc(100vw - 40px);
+  max-height: calc(100vw - 40px);
 
   &--dragging {
     cursor: grabbing;
@@ -57,6 +62,10 @@
 
     mix-blend-mode: hard-light;
     transform: translate(-50%, -50%);
+
+    @media #{$query-max-md} {
+      display: none;
+    }
 
     // .globe--dragging & {
     //   box-shadow: 1px 2px 14px rgba(0, 0, 0, 0.2), 4px 8px 32px rgba(0, 0, 0, 0.2);

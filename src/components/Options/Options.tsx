@@ -36,20 +36,22 @@ export const Options = ({
         Quiz Mode: <b>{quizMode}</b>
       </span>
 
-      <span className="timer">{formatTime()}</span>
+      <div className="options__right">
+        <span className="timer">{formatTime()}</span>
 
-      <button
-        className="button--text"
-        onClick={() => {
-          if (window.confirm("Are you sure you want to reset the puzzle?")) {
-            resetGame();
-            setIsTimePaused(true);
-            setIsModalOpen(true);
-          }
-        }}
-      >
-        Restart Quiz
-      </button>
+        <button
+          className="button--text"
+          onClick={() => {
+            if (window.confirm("Are you sure you want to reset the puzzle?")) {
+              resetGame();
+              setIsTimePaused(true);
+              setIsModalOpen(true);
+            }
+          }}
+        >
+          Restart Quiz
+        </button>
+      </div>
     </div>
   );
 };

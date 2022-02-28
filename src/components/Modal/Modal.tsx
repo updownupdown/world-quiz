@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { useState } from "react";
 import { countryNames, getRandomCountryList } from "../../data/countryData";
 import { QuizModes, Quizzes } from "../Options/Options";
-import { Toggle, ToggleGroup } from "../Options/Toggle";
+import { Toggle, ToggleGroup } from "../Modal/Toggle";
 import "./Modal.scss";
 
 interface Props {
@@ -48,7 +48,7 @@ export const Modal = ({
       <div className="modal">
         <h3>Start Quiz</h3>
 
-        <ToggleGroup label="Quiz Mode">
+        <ToggleGroup label="Quiz Mode" isVertical>
           <Toggle
             label="Type country names"
             isCurrent={optionQuizMode === Quizzes.TypeCountries}

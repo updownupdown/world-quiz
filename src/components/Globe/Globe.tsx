@@ -101,6 +101,36 @@ const Globe = ({
     }
   }, [focusOnCountry]);
 
+  function handleInteractionStart(event: any) {
+    setMouseOnDown({
+      x: event.clientX - window.innerWidth / 2,
+      y: event.clientY - window.innerHeight / 2,
+    });
+    setTargetOnDown({
+      x: rotation[0],
+      y: rotation[1],
+    });
+    setIsDragging(true);
+  }
+
+  function handleInteractionMove(event: any) {
+    if (isDragging) {
+      const mouse = {
+        x: event.clientX - window.innerWidth / 2,
+        y: event.clientY - window.innerHeight / 2,
+      };
+      setRotation([
+        targetOnDown.x + (mouse.x - mouseOnDown.x) * 0.2 * (500 / scale),
+        targetOnDown.y + (mouse.y - mouseOnDown.y) * -0.2 * (500 / scale),
+        0,
+      ]);
+    }
+  }
+
+  function handleInteractionEnd() {
+    setIsDragging(false);
+  }
+
   return (
     <>
       <div
@@ -139,37 +169,22 @@ const Globe = ({
           projection={"geoOrthographic"}
           projectionConfig={{ scale: scale, rotate: rotation }}
           onMouseDown={(event) => {
-            setMouseOnDown({
-              x: event.clientX - window.innerWidth / 2,
-              y: event.clientY - window.innerHeight / 2,
-            });
-            setTargetOnDown({
-              x: rotation[0],
-              y: rotation[1],
-            });
-
-            setIsDragging(true);
+            handleInteractionStart(event);
           }}
+          // onTouchStart={(event) => {
+          //   handleInteractionStart(event);
+          // }}
           onMouseMove={(event) => {
-            if (isDragging) {
-              const mouse = {
-                x: event.clientX - window.innerWidth / 2,
-                y: event.clientY - window.innerHeight / 2,
-              };
-              setRotation([
-                targetOnDown.x +
-                  (mouse.x - mouseOnDown.x) * 0.2 * (500 / scale),
-                targetOnDown.y +
-                  (mouse.y - mouseOnDown.y) * -0.2 * (500 / scale),
-                0,
-              ]);
-            }
+            handleInteractionMove(event);
           }}
+          // onTouchMoveCapture={(event) => {
+          //   handleInteractionMove(event);
+          // }}
           onMouseUp={() => {
-            setIsDragging(false);
+            handleInteractionEnd();
           }}
           onMouseLeave={() => {
-            setIsDragging(false);
+            handleInteractionEnd();
           }}
         >
           <Sphere
