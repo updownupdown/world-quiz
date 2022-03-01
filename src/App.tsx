@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import Globe from "./components/Globe/Globe";
 import { Info } from "./components/Info/Info";
-import { Header } from "./components/Header/Header";
 import { List } from "./components/List/List";
 import { Quiz } from "./components/Quiz/Quiz";
-import { Options, QuizModes, Quizzes } from "./components/Options/Options";
+import { Options, QuizModes, Quizzes } from "./components/Header/Header";
 import {
   countryNames,
   getCountryByCode,
@@ -15,6 +14,7 @@ import { CountryData } from "./data/countryList";
 import { Modal } from "./components/Modal/Modal";
 import Confetti from "react-confetti";
 import clsx from "clsx";
+import { useWindowSize } from "./utils/utils";
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(true);
@@ -42,6 +42,8 @@ function App() {
   const [inputHint, setInputHint] = useState("");
 
   const [clickedCountry, setClickedCountry] = useState("");
+
+  const { width, height } = useWindowSize();
 
   function resetGame() {
     setTime(0);
@@ -114,6 +116,7 @@ function App() {
     }
   }, [quizMode]);
 
+  // User guesses: country click
   useEffect(() => {
     if (quizMode === Quizzes.FindCountries) {
       if (clickedCountry === selectedCountryInfo?.code) {
@@ -129,6 +132,7 @@ function App() {
     }
   }, [clickedCountry]);
 
+  // User guesses: input
   useEffect(() => {
     const userGuess = normalizeString(inputValue);
 
@@ -199,6 +203,8 @@ function App() {
 
       <div className="confetti-container">
         <Confetti
+          width={width}
+          height={height}
           numberOfPieces={showConfetti ? 1000 : 0}
           recycle={false}
           onConfettiComplete={(confetti) => {
@@ -208,18 +214,18 @@ function App() {
         />
       </div>
 
+      <Options
+        quizMode={quizMode}
+        setIsModalOpen={setIsModalOpen}
+        time={time}
+        setIsTimePaused={setIsTimePaused}
+        resetGame={resetGame}
+      />
+
       <div className={clsx("page", isModalOpen && "page--modal-open")}>
-        <Header />
+        {/* <Header /> */}
 
         <div className="page__content">
-          <Options
-            quizMode={quizMode}
-            setIsModalOpen={setIsModalOpen}
-            time={time}
-            setIsTimePaused={setIsTimePaused}
-            resetGame={resetGame}
-          />
-
           <div className="top">
             <div className="top__display">
               <Info selectedCountry={selectedCountry} quizMode={quizMode} />

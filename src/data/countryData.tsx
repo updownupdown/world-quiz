@@ -1,4 +1,4 @@
-import { QuizModes, Quizzes } from "../components/Options/Options";
+import { QuizModes, Quizzes } from "../components/Header/Header";
 import { normalizeString, shuffle } from "../utils/utils";
 import { countryList } from "./countryList";
 

@@ -2,7 +2,7 @@ import { useState } from "react";
 import clsx from "clsx";
 import "./Quiz.scss";
 import { useEffect } from "react";
-import { QuizModes, Quizzes } from "../Options/Options";
+import { QuizModes, Quizzes } from "../Header/Header";
 
 interface Props {
   setFocusOnCountry: (country: string) => void;

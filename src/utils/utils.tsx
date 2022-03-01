@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 export function normalizeString(string: string) {
   return string
     .toLowerCase()
@@ -39,4 +41,26 @@ export function animateProgressBar() {
       el.classList.remove("animate");
     }, 1000);
   }
+}
+
+export function useWindowSize() {
+  const [windowSize, setWindowSize] = useState<{
+    width: undefined | number;
+    height: undefined | number;
+  }>({
+    width: undefined,
+    height: undefined,
+  });
+  useEffect(() => {
+    function handleResize() {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  return windowSize;
 }

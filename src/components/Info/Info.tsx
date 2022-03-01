@@ -1,7 +1,7 @@
 import Flag from "react-world-flags";
 import { countryList } from "../../data/countryList";
 import { formatPopulationNumber } from "../../utils/utils";
-import { QuizModes, Quizzes } from "../Options/Options";
+import { QuizModes, Quizzes } from "../Header/Header";
 import "./Info.scss";
 
 interface Props {

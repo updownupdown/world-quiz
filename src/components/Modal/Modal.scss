@@ -2,38 +2,12 @@
   position: fixed;
   z-index: 100;
   top: 0;
+  left: 0;
   right: 0;
   bottom: 0;
-  left: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  .win-message {
-    transition: 2s ease opacity;
-    opacity: 0;
-    position: fixed;
-    z-index: 2;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-bottom: 30px;
-    padding: 12px 20px;
-
-    border-radius: 10px;
-    background: var(--white);
-    box-shadow: 2px 4px 8px rgba(var(--K800-rgb), 0.1),
-      4px 8px 20px rgba(var(--K800-rgb), 0.16);
-
-    font-size: 24px;
-    font-weight: 700;
-    text-align: center;
-    color: var(--status-green);
-
-    &--visible {
-      opacity: 1;
-    }
-  }
 
   .modal-mask {
     position: absolute;
@@ -88,7 +62,7 @@
     }
 
     .toggle-group {
-      margin-bottom: 40px;
+      margin-bottom: 30px;
     }
 
     .modal-close {

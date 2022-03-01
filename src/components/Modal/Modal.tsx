@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { useState } from "react";
 import { countryNames, getRandomCountryList } from "../../data/countryData";
-import { QuizModes, Quizzes } from "../Options/Options";
+import { QuizModes, Quizzes } from "../Header/Header";
 import { Toggle, ToggleGroup } from "../Modal/Toggle";
 import "./Modal.scss";
 import { useEffect } from "react";
@@ -46,12 +46,6 @@ export const Modal = ({
 
   return (
     <div className="modal-container">
-      <h2
-        className={clsx("win-message", showConfetti && "win-message--visible")}
-      >
-        Good job!
-      </h2>
-
       <div className="modal-mask" />
       <div className="modal">
         <h3>Start Quiz</h3>

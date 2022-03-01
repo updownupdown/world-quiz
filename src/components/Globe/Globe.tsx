@@ -10,7 +10,7 @@ import { countryList } from "../../data/countryList";
 import { ZoomOut } from "../Icons/ZoomOut";
 import { ZoomIn } from "../Icons/ZoomIn";
 import "./Globe.scss";
-import { QuizModes, Quizzes } from "../Options/Options";
+import { QuizModes, Quizzes } from "../Header/Header";
 
 const geoUrl = process.env.PUBLIC_URL + "/data/world-110m.json";
 
