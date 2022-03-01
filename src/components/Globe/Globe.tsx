@@ -263,7 +263,10 @@ const Globe = ({
               geographies.map((geo: GeoProps) => {
                 let isSelected = false;
 
-                if (quizMode === Quizzes.TypeCountries) {
+                if (
+                  quizMode === Quizzes.TypeCountries ||
+                  quizMode === Quizzes.FindCountries
+                ) {
                   isSelected = guessedCountries.includes(geo.properties.ISO_A2);
                 } else if (
                   quizMode === Quizzes.GuessByFlag ||

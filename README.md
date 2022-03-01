@@ -6,6 +6,7 @@ A quiz to learn country names, locations, and flags.
 
 ## To Do:
 
-- Better instructions, maybe info icons, or always visible toast on next instruction? Especially on find on globe.
+- Improve modal, with better graphics for modes, checkboxes for country options
+- Better instructions, maybe info icons, or always visible toast on next instruction? Especially on find on globe. Instructions in modal?
 - Test "minor" countries (read list)
 - Test "small" countries (click all of them)
