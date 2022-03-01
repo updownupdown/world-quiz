@@ -67,6 +67,7 @@ interface Props {
   allowHover: boolean;
   setClickedCountry: (country: string) => void;
   quizMode: QuizModes | undefined;
+  isModalOpen: boolean;
 }
 
 const Globe = ({
@@ -76,6 +77,7 @@ const Globe = ({
   allowHover,
   setClickedCountry,
   quizMode,
+  isModalOpen,
 }: Props) => {
   const [rotation, setRotation] = useState<[number, number, number]>(
     defaults.rotation
@@ -113,6 +115,23 @@ const Globe = ({
     setRotation(defaults.rotation);
     setScale(defaults.scale);
   }, [quizMode]);
+
+  const handleKeyPress = (event: KeyboardEvent) => {
+    if (isModalOpen || document.activeElement?.nodeName !== "BODY") return;
+    if (event.key === "=" || event.key === "+") {
+      zoomGlobe(true);
+    } else if (event.key === "-") {
+      zoomGlobe(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyPress);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [handleKeyPress]);
 
   function handleInteractionStart(event: React.TouchEvent | React.MouseEvent) {
     let position = defaults.coordinates;

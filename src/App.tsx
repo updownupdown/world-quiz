@@ -249,6 +249,7 @@ function App() {
                 allowHover={quizMode === Quizzes.FindCountries}
                 setClickedCountry={setClickedCountry}
                 quizMode={quizMode}
+                isModalOpen={isModalOpen}
               />
             </div>
           </div>

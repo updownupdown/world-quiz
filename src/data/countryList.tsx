@@ -22,6 +22,7 @@ export const countryList: CountryData[] = [
     capital: "Oranjestad",
     population: 115120,
     minor: true,
+    small: true,
   },
   {
     code: "AF",
@@ -53,6 +54,7 @@ export const countryList: CountryData[] = [
     capital: "The Valley",
     population: 17087,
     minor: true,
+    small: true,
   },
   {
     code: "AL",
@@ -74,6 +76,7 @@ export const countryList: CountryData[] = [
     capital: "Mariehamn",
     population: 27153,
     minor: true,
+    small: true,
   },
   {
     code: "AD",
@@ -85,6 +88,7 @@ export const countryList: CountryData[] = [
     capital: "Andorra la Vella",
     population: 85702,
     minor: true,
+    small: true,
   },
   {
     code: "AE",
@@ -126,6 +130,7 @@ export const countryList: CountryData[] = [
     capital: "Pago Pago",
     population: 51504,
     minor: true,
+    small: true,
   },
   {
     code: "AQ",
@@ -147,6 +152,7 @@ export const countryList: CountryData[] = [
     capital: "Port-aux-Français",
     population: 140,
     minor: true,
+    small: true,
   },
   {
     code: "AG",
@@ -158,6 +164,7 @@ export const countryList: CountryData[] = [
     capital: "Saint John's",
     population: 94731,
     minor: true,
+    small: true,
   },
   {
     code: "AU",
@@ -289,6 +296,7 @@ export const countryList: CountryData[] = [
     capital: "Gustavia",
     population: 7184,
     minor: true,
+    small: true,
   },
   {
     code: "BY",
@@ -320,6 +328,7 @@ export const countryList: CountryData[] = [
     capital: "Hamilton",
     population: 70864,
     minor: true,
+    small: true,
   },
   {
     code: "BO",
@@ -351,6 +360,7 @@ export const countryList: CountryData[] = [
     capital: "Bridgetown",
     population: 292336,
     minor: true,
+    small: true,
   },
   {
     code: "BN",
@@ -361,7 +371,6 @@ export const countryList: CountryData[] = [
     latLon: [4.5, 114.66666666],
     capital: "Bandar Seri Begawan",
     population: 443593,
-    small: true,
   },
   {
     code: "BT",
@@ -483,6 +492,7 @@ export const countryList: CountryData[] = [
     capital: "Avarua",
     population: 9290,
     minor: true,
+    small: true,
   },
   {
     code: "CO",
@@ -548,6 +558,7 @@ export const countryList: CountryData[] = [
     capital: "Willemstad",
     population: 149648,
     minor: true,
+    small: true,
   },
   {
     code: "KY",
@@ -559,6 +570,7 @@ export const countryList: CountryData[] = [
     capital: "George Town",
     population: 58441,
     minor: true,
+    small: true,
   },
   {
     code: "CY",
@@ -610,6 +622,7 @@ export const countryList: CountryData[] = [
     capital: "Roseau",
     population: 73897,
     minor: true,
+    small: true,
   },
   {
     code: "DK",
@@ -731,6 +744,7 @@ export const countryList: CountryData[] = [
     capital: "Stanley",
     population: 2931,
     minor: true,
+    small: true,
   },
   {
     code: "FR",
@@ -752,6 +766,7 @@ export const countryList: CountryData[] = [
     capital: "Tórshavn",
     population: 50730,
     minor: true,
+    small: true,
   },
   {
     code: "FM",
@@ -763,6 +778,7 @@ export const countryList: CountryData[] = [
     capital: "Palikir",
     population: 104196,
     minor: true,
+    small: true,
   },
   {
     code: "GA",
@@ -804,6 +820,7 @@ export const countryList: CountryData[] = [
     capital: "St. Peter Port",
     population: 66502,
     minor: true,
+    small: true,
   },
   {
     code: "GH",
@@ -825,6 +842,7 @@ export const countryList: CountryData[] = [
     capital: "Gibraltar",
     population: 29396,
     minor: true,
+    small: true,
   },
   {
     code: "GN",
@@ -886,6 +904,7 @@ export const countryList: CountryData[] = [
     capital: "St. George's",
     population: 111724,
     minor: true,
+    small: true,
   },
   {
     code: "GL",
@@ -917,6 +936,7 @@ export const countryList: CountryData[] = [
     capital: "Hagåtña",
     population: 167358,
     minor: true,
+    small: true,
   },
   {
     code: "GY",
@@ -999,6 +1019,7 @@ export const countryList: CountryData[] = [
     capital: "Douglas",
     population: 88815,
     minor: true,
+    small: true,
   },
   {
     code: "IN",
@@ -1020,6 +1041,7 @@ export const countryList: CountryData[] = [
     capital: "Diego Garcia",
     population: 4000,
     minor: true,
+    small: true,
   },
   {
     code: "IE",
@@ -1101,6 +1123,7 @@ export const countryList: CountryData[] = [
     capital: "Saint Helier",
     population: 98840,
     minor: true,
+    small: true,
   },
   {
     code: "JO",
@@ -1172,6 +1195,7 @@ export const countryList: CountryData[] = [
     capital: "South Tarawa",
     population: 108145,
     minor: true,
+    small: true,
   },
   {
     code: "KN",
@@ -1183,6 +1207,7 @@ export const countryList: CountryData[] = [
     capital: "Basseterre",
     population: 52715,
     minor: true,
+    small: true,
   },
   {
     code: "KR",
@@ -1216,14 +1241,13 @@ export const countryList: CountryData[] = [
   },
   {
     code: "LA",
-    name: "Lao PDR",
+    name: "Laos",
     continent: "Asia",
     region: "Asia",
     subregion: "South-Eastern Asia",
     latLon: [18, 105],
     capital: "Vientiane",
     population: 7126706,
-    minor: true,
   },
   {
     code: "LB",
@@ -1265,6 +1289,7 @@ export const countryList: CountryData[] = [
     capital: "Castries",
     population: 164994,
     minor: true,
+    small: true,
   },
   {
     code: "LI",
@@ -1338,6 +1363,7 @@ export const countryList: CountryData[] = [
     capital: null,
     population: 601969,
     minor: true,
+    small: true,
   },
   {
     code: "MF",
@@ -1349,6 +1375,7 @@ export const countryList: CountryData[] = [
     capital: "Marigot",
     population: 32125,
     minor: true,
+    small: true,
   },
   {
     code: "MA",
@@ -1422,6 +1449,7 @@ export const countryList: CountryData[] = [
     capital: "Majuro",
     population: 74539,
     minor: true,
+    small: true,
   },
   {
     code: "MK",
@@ -1495,6 +1523,7 @@ export const countryList: CountryData[] = [
     capital: "Saipan",
     population: 52263,
     minor: true,
+    small: true,
   },
   {
     code: "MZ",
@@ -1526,6 +1555,7 @@ export const countryList: CountryData[] = [
     capital: "Plymouth",
     population: 5292,
     minor: true,
+    small: true,
   },
   {
     code: "MU",
@@ -1579,6 +1609,7 @@ export const countryList: CountryData[] = [
     capital: "Nouméa",
     population: 279070,
     minor: true,
+    small: true,
   },
   {
     code: "NE",
@@ -1600,6 +1631,7 @@ export const countryList: CountryData[] = [
     capital: "Kingston",
     population: 2210,
     minor: true,
+    small: true,
   },
   {
     code: "NG",
@@ -1631,6 +1663,7 @@ export const countryList: CountryData[] = [
     capital: "Alofi",
     population: 1626,
     minor: true,
+    small: true,
   },
   {
     code: "NL",
@@ -1672,6 +1705,7 @@ export const countryList: CountryData[] = [
     capital: "Yaren",
     population: 9642,
     minor: true,
+    small: true,
   },
   {
     code: "NZ",
@@ -1723,6 +1757,7 @@ export const countryList: CountryData[] = [
     capital: "Adamstown",
     population: 54,
     minor: true,
+    small: true,
   },
   {
     code: "PE",
@@ -1754,6 +1789,7 @@ export const countryList: CountryData[] = [
     capital: "Ngerulmud",
     population: 21431,
     minor: true,
+    small: true,
   },
   {
     code: "PG",
@@ -1835,6 +1871,7 @@ export const countryList: CountryData[] = [
     capital: "Papeetē",
     population: 287881,
     minor: true,
+    small: true,
   },
   {
     code: "QA",
@@ -1946,6 +1983,7 @@ export const countryList: CountryData[] = [
     capital: "King Edward Point",
     population: 30,
     minor: true,
+    small: true,
   },
   {
     code: "SB",
@@ -1987,6 +2025,7 @@ export const countryList: CountryData[] = [
     capital: "City of San Marino",
     population: 33537,
     minor: true,
+    small: true,
   },
   {
     code: "SO",
@@ -2008,6 +2047,7 @@ export const countryList: CountryData[] = [
     capital: "Saint-Pierre",
     population: 5533,
     minor: true,
+    small: true,
   },
   {
     code: "RS",
@@ -2029,6 +2069,7 @@ export const countryList: CountryData[] = [
     capital: "São Tomé",
     population: 201025,
     minor: true,
+    small: true,
   },
   {
     code: "SR",
@@ -2090,6 +2131,7 @@ export const countryList: CountryData[] = [
     capital: "Philipsburg",
     population: 42083,
     minor: true,
+    small: true,
   },
   {
     code: "SC",
@@ -2101,6 +2143,7 @@ export const countryList: CountryData[] = [
     capital: "Victoria",
     population: 93920,
     minor: true,
+    small: true,
   },
   {
     code: "SY",
@@ -2122,6 +2165,7 @@ export const countryList: CountryData[] = [
     capital: "Cockburn Town",
     population: 52570,
     minor: true,
+    small: true,
   },
   {
     code: "TD",
@@ -2193,6 +2237,7 @@ export const countryList: CountryData[] = [
     capital: "Nuku'alofa",
     population: 106479,
     minor: true,
+    small: true,
   },
   {
     code: "TT",
@@ -2234,6 +2279,7 @@ export const countryList: CountryData[] = [
     capital: "Funafuti",
     population: 11052,
     minor: true,
+    small: true,
   },
   {
     code: "TW",
@@ -2285,6 +2331,7 @@ export const countryList: CountryData[] = [
     capital: null,
     population: 300,
     minor: true,
+    small: true,
   },
   {
     code: "UY",
@@ -2325,6 +2372,7 @@ export const countryList: CountryData[] = [
     latLon: [41.9, 12.45],
     capital: "Vatican City",
     population: 1000,
+    small: true,
   },
   {
     code: "VC",
@@ -2336,6 +2384,7 @@ export const countryList: CountryData[] = [
     capital: "Kingstown",
     population: 102089,
     minor: true,
+    small: true,
   },
   {
     code: "VE",
@@ -2357,6 +2406,7 @@ export const countryList: CountryData[] = [
     capital: "Road Town",
     population: 35015,
     minor: true,
+    small: true,
   },
   {
     code: "VI",
@@ -2368,6 +2418,7 @@ export const countryList: CountryData[] = [
     capital: "Charlotte Amalie",
     population: 107268,
     minor: true,
+    small: true,
   },
   {
     code: "VN",
@@ -2389,6 +2440,7 @@ export const countryList: CountryData[] = [
     capital: "Port Vila",
     population: 282814,
     minor: true,
+    small: true,
   },
   {
     code: "WF",
@@ -2400,6 +2452,7 @@ export const countryList: CountryData[] = [
     capital: "Mata-Utu",
     population: 15714,
     minor: true,
+    small: true,
   },
   {
     code: "WS",
