@@ -223,8 +223,6 @@ function App() {
       />
 
       <div className={clsx("page", isModalOpen && "page--modal-open")}>
-        {/* <Header /> */}
-
         <div className="page__content">
           <div className="top">
             <div className="top__display">
