@@ -142,6 +142,7 @@ export const Modal = ({
 
             setRandomList(
               getRandomCountryList(
+                optionQuizMode,
                 optionIncludeMinor,
                 optionIncludeSmall,
                 optionLimit

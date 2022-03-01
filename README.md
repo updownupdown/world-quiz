@@ -6,7 +6,7 @@ A quiz to learn country names, locations, and flags.
 
 ## To Do:
 
-- Add touch events to globe
-- Disable input on "find country on globe" mode
-- Fine tune list of "minor" countries
-- Don't show capital in info list for countries that don't have them (i.e. Antarctica).
+- Improve "Good job" appearance; also shows up on mobile on page load
+- Better instructions, maybe info icons, or always visible toast on next instruction? Especially on find on globe.
+- Header/options should be together? better styling to differentiate between rest of page
+- Fine tune list of "minor" and "small" countries

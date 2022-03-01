@@ -32,16 +32,20 @@ export const Info = ({ selectedCountry, quizMode }: Props) => {
               {quizMode === Quizzes.GuessByFlag ? "???" : countryData.name}
             </h3>
             <ul>
-              <li className="capital">
-                Capital:{" "}
-                {quizMode === Quizzes.TypeCapital ? "???" : countryData.capital}
+              {countryData.capital !== null && (
+                <li className="capital">
+                  Capital:{" "}
+                  {quizMode === Quizzes.TypeCapital
+                    ? "???"
+                    : countryData.capital}
+                </li>
+              )}
+              <li>
+                Population: {formatPopulationNumber(countryData.population)}
               </li>
               <li>
                 {countryData.subregion}, {countryData.region} (
                 {countryData.code})
-              </li>
-              <li>
-                Population: {formatPopulationNumber(countryData.population)}
               </li>
             </ul>
           </div>

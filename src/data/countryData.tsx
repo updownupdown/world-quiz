@@ -1,3 +1,4 @@
+import { QuizModes, Quizzes } from "../components/Options/Options";
 import { normalizeString, shuffle } from "../utils/utils";
 import { countryList } from "./countryList";
 
@@ -39,6 +40,7 @@ export function getCountryByCode(code: string) {
 
 // Get random list of countries
 export function getRandomCountryList(
+  quizMode: QuizModes,
   includeMinor: boolean,
   includeSmall: boolean,
   limit: number
@@ -46,7 +48,11 @@ export function getRandomCountryList(
   let countries: string[] = [];
 
   countryList.forEach((country) => {
-    if (includeMinor || !country.minor) countries.push(country.code);
+    if (!includeMinor && country.minor) return;
+    if (!includeSmall && country.small) return;
+    if (quizMode === Quizzes.TypeCapital && country.capital === null) return;
+
+    countries.push(country.code);
   });
 
   shuffle(countries);

@@ -937,7 +937,6 @@ export const countryList: CountryData[] = [
     latLon: [22.267, 114.188],
     capital: "City of Victoria",
     population: 7191503,
-    minor: true,
     small: true,
   },
   {
@@ -1276,7 +1275,6 @@ export const countryList: CountryData[] = [
     latLon: [47.26666666, 9.53333333],
     capital: "Vaduz",
     population: 38244,
-    minor: true,
     small: true,
   },
   {
@@ -1318,7 +1316,6 @@ export const countryList: CountryData[] = [
     latLon: [49.75, 6.16666666],
     capital: "Luxembourg",
     population: 594130,
-    minor: true,
     small: true,
   },
   {
