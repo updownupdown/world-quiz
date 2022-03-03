@@ -4,11 +4,7 @@ import { Info } from "./components/Info/Info";
 import { List } from "./components/List/List";
 import { Quiz } from "./components/Quiz/Quiz";
 import { Options, QuizModes, Quizzes } from "./components/Header/Header";
-import {
-  countryNames,
-  getCountryByCode,
-  getCountryByName,
-} from "./data/countryData";
+import { getCountryByCode, getCountryByName } from "./data/countryData";
 import { animateProgressBar, normalizeString } from "./utils/utils";
 import { CountryData } from "./data/countryList";
 import { Modal } from "./components/Modal/Modal";
@@ -35,6 +31,7 @@ function App() {
   const [isTimePaused, setIsTimePaused] = useState(true);
 
   const [randomList, setRandomList] = useState<string[]>([]);
+  const [randomListNames, setRandomListNames] = useState<string[]>([]);
   const [countryNum, setCountryNum] = useState(0);
   const [positionInList, setPositionInList] = useState(0);
 
@@ -161,10 +158,7 @@ function App() {
     }
 
     if (quizMode === Quizzes.TypeCountries) {
-      if (
-        (includeMinor && countryNames.withMinors.includes(userGuess)) ||
-        countryNames.withoutMinors.includes(userGuess)
-      ) {
+      if (randomListNames.includes(userGuess)) {
         const matchingCountry = getCountryByName(userGuess);
 
         if (
@@ -196,9 +190,9 @@ function App() {
         setIsModalOpen={setIsModalOpen}
         setQuizMode={setQuizMode}
         setRandomList={setRandomList}
+        setRandomListNames={setRandomListNames}
         setCountryNum={setCountryNum}
         setIsTimePaused={setIsTimePaused}
-        showConfetti={showConfetti}
       />
 
       <div className="confetti-container">

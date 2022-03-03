@@ -1,21 +1,19 @@
-import clsx from "clsx";
 import { useState } from "react";
-import { countryNames, getRandomCountryList } from "../../data/countryData";
+import { getRandomCountryList } from "../../data/countryData";
 import { QuizModes, Quizzes } from "../Header/Header";
 import { Toggle, ToggleGroup } from "../Modal/Toggle";
 import "./Modal.scss";
-import { useEffect } from "react";
 
 interface Props {
   isModalOpen: boolean;
   setIsModalOpen: (isOpen: boolean) => void;
   setQuizMode: (mode: QuizModes) => void;
   setRandomList: (list: string[]) => void;
+  setRandomListNames: (list: string[]) => void;
   setCountryNum: (number: number) => void;
   setIsTimePaused: (isPaused: boolean) => void;
   setIncludeMinor: (include: boolean) => void;
   setIncludeSmall: (include: boolean) => void;
-  showConfetti: boolean;
 }
 
 export const Modal = ({
@@ -23,24 +21,17 @@ export const Modal = ({
   setIsModalOpen,
   setQuizMode,
   setRandomList,
+  setRandomListNames,
   setCountryNum,
   setIsTimePaused,
   setIncludeMinor,
   setIncludeSmall,
-  showConfetti,
 }: Props) => {
   const [optionQuizMode, setOptionQuizMode] = useState<QuizModes>(
     Quizzes.TypeCountries
   );
   const [optionIncludeMinor, setOptionIncludeMinor] = useState(false);
-  const [optionIncludeSmall, setOptionIncludeSmall] = useState(false);
   const [optionLimit, setOptionLimit] = useState(20);
-
-  useEffect(() => {
-    if (optionQuizMode === Quizzes.FindCountries) {
-      setOptionIncludeSmall(false);
-    }
-  }, [optionQuizMode]);
 
   if (!isModalOpen) return <></>;
 
@@ -114,42 +105,23 @@ export const Modal = ({
           />
         </ToggleGroup>
 
-        <ToggleGroup label="Include Small Countries">
-          <Toggle
-            disabled={optionQuizMode === Quizzes.FindCountries}
-            label="Yes"
-            isCurrent={optionIncludeSmall}
-            onClick={() => setOptionIncludeSmall(true)}
-          />
-          <Toggle
-            disabled={optionQuizMode === Quizzes.FindCountries}
-            label="No"
-            isCurrent={!optionIncludeSmall}
-            onClick={() => setOptionIncludeSmall(false)}
-          />
-        </ToggleGroup>
-
         <button
           className="button--text"
           onClick={() => {
             setQuizMode(optionQuizMode);
 
-            setRandomList(
-              getRandomCountryList(
-                optionQuizMode,
-                optionIncludeMinor,
-                optionIncludeSmall,
-                optionLimit
-              )
+            const optionIncludeSmall = optionQuizMode !== Quizzes.FindCountries;
+
+            const randomList = getRandomCountryList(
+              optionQuizMode,
+              optionIncludeMinor,
+              optionIncludeSmall,
+              optionLimit
             );
 
-            let numberOfCountries = optionLimit;
-            if (numberOfCountries === 0) {
-              numberOfCountries = optionIncludeMinor
-                ? countryNames.withMinors.length
-                : countryNames.withoutMinors.length;
-            }
-            setCountryNum(numberOfCountries);
+            setRandomList(randomList.countries);
+            setRandomListNames(randomList.countriesNames);
+            setCountryNum(randomList.countries.length);
 
             setIsModalOpen(false);
             setIsTimePaused(false);

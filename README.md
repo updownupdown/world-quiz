@@ -6,7 +6,10 @@ A quiz to learn country names, locations, and flags.
 
 ## To Do:
 
-- Improve modal, with better graphics for modes, checkboxes for country options
-- Better instructions, maybe info icons, or always visible toast on next instruction? Especially on find on globe. Instructions in modal?
 - Test "minor" countries (read list)
 - Test "small" countries (click all of them)
+- Improve modal, with better graphics for modes, checkboxes for country options
+- Better instructions, maybe info icons, or always visible toast on next instruction? Especially on find on globe. Instructions in modal?
+- Resolve mobile glitches?
+- Add more stats from https://www.npmjs.com/package/country-json ?
+- Add wikipedia link?

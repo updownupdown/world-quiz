@@ -2,25 +2,6 @@ import { QuizModes, Quizzes } from "../components/Header/Header";
 import { normalizeString, shuffle } from "../utils/utils";
 import { countryList } from "./countryList";
 
-// Number of countries
-export const countryNum = countryList.length;
-
-// Generate simplified country name list for user input matching
-const countryNamesWithMinors: string[] = [];
-const countryNamesWithoutMinors: string[] = [];
-
-countryList.forEach((country) => {
-  countryNamesWithMinors.push(normalizeString(country.name));
-  if (!country.minor) {
-    countryNamesWithoutMinors.push(normalizeString(country.name));
-  }
-});
-
-export const countryNames = {
-  withMinors: countryNamesWithMinors,
-  withoutMinors: countryNamesWithoutMinors,
-};
-
 // Generate list of regions for list categories
 const regions: string[] = [];
 countryList.forEach((country) => {
@@ -46,13 +27,15 @@ export function getRandomCountryList(
   limit: number
 ) {
   let countries: string[] = [];
+  let countriesNames: string[] = [];
 
   countryList.forEach((country) => {
-    if (!includeMinor && country.minor) return;
-    if (!includeSmall && country.small) return;
     if (quizMode === Quizzes.TypeCapital && country.capital === null) return;
+    if (!includeSmall && country.small) return;
+    if (!includeMinor && country.minor) return;
 
     countries.push(country.code);
+    countriesNames.push(normalizeString(country.name));
   });
 
   shuffle(countries);
@@ -61,5 +44,5 @@ export function getRandomCountryList(
     countries = countries.slice(0, limit);
   }
 
-  return countries;
+  return { countries, countriesNames };
 }
